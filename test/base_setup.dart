@@ -7,5 +7,7 @@ void setup() {
 
   assert(env['DITTO_API_TOKEN'] != null);
 
-  DittoConfigs(DittoConfigData.base(env['DITTO_API_TOKEN']!));
+  DittoConfigs(
+    DittoConfigData.base(apiKey: env['DITTO_API_TOKEN']!, projectId: ''),
+  );
 }

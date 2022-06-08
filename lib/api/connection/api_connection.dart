@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:ditto_sdk/api/api_exports.dart';
+import 'package:ditto_sdk/api/models/language.dart';
 import 'package:ditto_sdk/api/models/models.dart';
 
 class ApiConnection {
@@ -37,11 +38,12 @@ class ApiConnection {
   }
 
   Future<Project?> getProjectById(
-    String projectId, {
+    String? projectId, {
     String? variant,
     Format? format,
     ProjectStatus? status,
   }) async {
+    projectId ??= DittoConfigs().projectId;
     final response = await _provider.get('/projects/$projectId');
     if (response.statusCode == 200) {
       final json =
@@ -58,7 +60,8 @@ class ApiConnection {
     return null;
   }
 
-  Future<List<Text>?> getStructuredTexts(String projectId) async {
+  Future<List<Text>?> getStructuredTexts(String? projectId) async {
+    projectId ??= DittoConfigs().projectId;
     final response = await _provider.get(
       '/projects/$projectId',
       queryParams: {'format': 'structured'},
@@ -72,5 +75,15 @@ class ApiConnection {
       }).toList();
     }
     return null;
+  }
+
+  Future<List<Language>> getVariants() async {
+    final response = await _provider.get('/variants');
+    if (response.statusCode == 200) {
+      return (jsonDecode(response.body) as List<dynamic>)
+          .map((d) => Language.fromJson(d))
+          .toList();
+    }
+    return [];
   }
 }

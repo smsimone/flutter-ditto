@@ -9,6 +9,7 @@ class DittoConfigs {
   DittoConfigs._(DittoConfigData data) {
     _apiKey = data.apiKey;
     _baseUrl = data.baseUrl;
+    _projectId = data.projectId;
     initialized = true;
   }
 
@@ -16,6 +17,7 @@ class DittoConfigs {
 
   bool initialized = false;
   String? _apiKey;
+  String? _projectId;
   Uri? _baseUrl;
 
   String get baseUrl {
@@ -33,14 +35,29 @@ class DittoConfigs {
     }
     return _apiKey!;
   }
+
+  String get projectId {
+    assert(initialized);
+    if (_projectId == null) {
+      throw Exception('projectId is not set');
+    }
+    return _projectId!;
+  }
 }
 
 class DittoConfigData {
   final String apiKey;
   final Uri baseUrl;
+  final String projectId;
 
-  DittoConfigData.base(this.apiKey)
-      : baseUrl = Uri.parse('https://api.dittowords.com');
+  DittoConfigData.base({
+    required this.apiKey,
+    required this.projectId,
+  }) : baseUrl = Uri.parse('https://api.dittowords.com');
 
-  DittoConfigData({required this.apiKey, required this.baseUrl});
+  DittoConfigData({
+    required this.apiKey,
+    required this.baseUrl,
+    required this.projectId,
+  });
 }
