@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:ditto_sdk/api/provider.dart';
-import 'package:ditto_sdk/models/models.dart';
-import 'package:ditto_sdk/models/project_list.dart';
+import 'package:ditto_sdk/src/api_exports.dart';
+import 'package:ditto_sdk/src/models/models.dart';
 
 class ApiConnection {
   factory ApiConnection() => _instance;

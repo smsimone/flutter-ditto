@@ -1,4 +1,4 @@
-import 'package:ditto_sdk/ditto_sdk.dart';
+import 'package:ditto_sdk/src/api_exports.dart';
 import 'package:dotenv/dotenv.dart';
 
 void setup() {

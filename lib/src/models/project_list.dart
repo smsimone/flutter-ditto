@@ -1,4 +1,4 @@
-import 'package:ditto_sdk/models/project.dart';
+import 'package:ditto_sdk/src/models/models.dart';
 
 class ProjectList {
   ProjectList._(this.projects);

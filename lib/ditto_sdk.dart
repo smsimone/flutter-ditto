@@ -1,4 +1,3 @@
 library ditto_sdk;
 
-export 'api/provider.dart';
-export 'configs/ditto_configs.dart';
+export 'widgets/ditto_provider.dart';

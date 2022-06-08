@@ -1,4 +1,4 @@
-import 'package:ditto_sdk/models/models.dart';
+import 'package:ditto_sdk/src/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'frame.freezed.dart';

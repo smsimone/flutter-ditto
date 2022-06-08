@@ -1,4 +1,4 @@
-import 'package:ditto_sdk/configs/ditto_configs.dart';
+import 'package:ditto_sdk/src/api_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 

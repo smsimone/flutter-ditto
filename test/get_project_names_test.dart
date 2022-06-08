@@ -1,4 +1,4 @@
-import 'package:ditto_sdk/api/api_connection.dart';
+import 'package:ditto_sdk/src/api/api_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
