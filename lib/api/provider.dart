@@ -31,7 +31,7 @@ class DittoProvider {
     );
 
     debugPrint(
-        '[DittoProvider-GET] $path - ${response.statusCode} - ${response.body}');
+        '[DittoProvider-GET] $path - ${response.statusCode}${response.statusCode == 200 ? '' : ' - ${response.body}'}');
 
     return response;
   }
