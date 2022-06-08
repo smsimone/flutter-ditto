@@ -20,8 +20,11 @@ Project _$ProjectFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Project {
+  @JsonKey(name: 'project_id')
+  String get projectId => throw _privateConstructorUsedError;
   @JsonKey(name: 'project_name')
   String get projectName => throw _privateConstructorUsedError;
+  @MapToFrameConverter()
   List<Frame> get frames => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +37,9 @@ abstract class $ProjectCopyWith<$Res> {
   factory $ProjectCopyWith(Project value, $Res Function(Project) then) =
       _$ProjectCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'project_name') String projectName, List<Frame> frames});
+      {@JsonKey(name: 'project_id') String projectId,
+      @JsonKey(name: 'project_name') String projectName,
+      @MapToFrameConverter() List<Frame> frames});
 }
 
 /// @nodoc
@@ -47,10 +52,15 @@ class _$ProjectCopyWithImpl<$Res> implements $ProjectCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? projectId = freezed,
     Object? projectName = freezed,
     Object? frames = freezed,
   }) {
     return _then(_value.copyWith(
+      projectId: projectId == freezed
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as String,
       projectName: projectName == freezed
           ? _value.projectName
           : projectName // ignore: cast_nullable_to_non_nullable
@@ -70,7 +80,9 @@ abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
       __$$_ProjectCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'project_name') String projectName, List<Frame> frames});
+      {@JsonKey(name: 'project_id') String projectId,
+      @JsonKey(name: 'project_name') String projectName,
+      @MapToFrameConverter() List<Frame> frames});
 }
 
 /// @nodoc
@@ -84,10 +96,15 @@ class __$$_ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? projectId = freezed,
     Object? projectName = freezed,
     Object? frames = freezed,
   }) {
     return _then(_$_Project(
+      projectId: projectId == freezed
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as String,
       projectName: projectName == freezed
           ? _value.projectName
           : projectName // ignore: cast_nullable_to_non_nullable
@@ -104,18 +121,23 @@ class __$$_ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Project implements _Project {
   const _$_Project(
-      {@JsonKey(name: 'project_name') required this.projectName,
-      required final List<Frame> frames})
+      {@JsonKey(name: 'project_id') required this.projectId,
+      @JsonKey(name: 'project_name') required this.projectName,
+      @MapToFrameConverter() required final List<Frame> frames})
       : _frames = frames;
 
   factory _$_Project.fromJson(Map<String, dynamic> json) =>
       _$$_ProjectFromJson(json);
 
   @override
+  @JsonKey(name: 'project_id')
+  final String projectId;
+  @override
   @JsonKey(name: 'project_name')
   final String projectName;
   final List<Frame> _frames;
   @override
+  @MapToFrameConverter()
   List<Frame> get frames {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_frames);
@@ -123,7 +145,7 @@ class _$_Project implements _Project {
 
   @override
   String toString() {
-    return 'Project(projectName: $projectName, frames: $frames)';
+    return 'Project(projectId: $projectId, projectName: $projectName, frames: $frames)';
   }
 
   @override
@@ -131,6 +153,7 @@ class _$_Project implements _Project {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Project &&
+            const DeepCollectionEquality().equals(other.projectId, projectId) &&
             const DeepCollectionEquality()
                 .equals(other.projectName, projectName) &&
             const DeepCollectionEquality().equals(other._frames, _frames));
@@ -140,6 +163,7 @@ class _$_Project implements _Project {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(projectId),
       const DeepCollectionEquality().hash(projectName),
       const DeepCollectionEquality().hash(_frames));
 
@@ -156,15 +180,20 @@ class _$_Project implements _Project {
 
 abstract class _Project implements Project {
   const factory _Project(
-      {@JsonKey(name: 'project_name') required final String projectName,
-      required final List<Frame> frames}) = _$_Project;
+      {@JsonKey(name: 'project_id') required final String projectId,
+      @JsonKey(name: 'project_name') required final String projectName,
+      @MapToFrameConverter() required final List<Frame> frames}) = _$_Project;
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$_Project.fromJson;
 
   @override
+  @JsonKey(name: 'project_id')
+  String get projectId => throw _privateConstructorUsedError;
+  @override
   @JsonKey(name: 'project_name')
   String get projectName => throw _privateConstructorUsedError;
   @override
+  @MapToFrameConverter()
   List<Frame> get frames => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

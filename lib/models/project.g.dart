@@ -7,14 +7,15 @@ part of 'project.dart';
 // **************************************************************************
 
 _$_Project _$$_ProjectFromJson(Map<String, dynamic> json) => _$_Project(
+      projectId: json['project_id'] as String,
       projectName: json['project_name'] as String,
-      frames: (json['frames'] as List<dynamic>)
-          .map((e) => Frame.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      frames: const MapToFrameConverter()
+          .fromJson(json['frames'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ProjectToJson(_$_Project instance) =>
     <String, dynamic>{
+      'project_id': instance.projectId,
       'project_name': instance.projectName,
-      'frames': instance.frames,
+      'frames': const MapToFrameConverter().toJson(instance.frames),
     };

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'project_names.dart';
+part of 'project_name.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,37 +14,37 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ProjectNames _$ProjectNamesFromJson(Map<String, dynamic> json) {
-  return _ProjectNames.fromJson(json);
+ProjectName _$ProjectNameFromJson(Map<String, dynamic> json) {
+  return _ProjectName.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ProjectNames {
+mixin _$ProjectName {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProjectNamesCopyWith<ProjectNames> get copyWith =>
+  $ProjectNameCopyWith<ProjectName> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProjectNamesCopyWith<$Res> {
-  factory $ProjectNamesCopyWith(
-          ProjectNames value, $Res Function(ProjectNames) then) =
-      _$ProjectNamesCopyWithImpl<$Res>;
+abstract class $ProjectNameCopyWith<$Res> {
+  factory $ProjectNameCopyWith(
+          ProjectName value, $Res Function(ProjectName) then) =
+      _$ProjectNameCopyWithImpl<$Res>;
   $Res call({String id, String name, String url});
 }
 
 /// @nodoc
-class _$ProjectNamesCopyWithImpl<$Res> implements $ProjectNamesCopyWith<$Res> {
-  _$ProjectNamesCopyWithImpl(this._value, this._then);
+class _$ProjectNameCopyWithImpl<$Res> implements $ProjectNameCopyWith<$Res> {
+  _$ProjectNameCopyWithImpl(this._value, this._then);
 
-  final ProjectNames _value;
+  final ProjectName _value;
   // ignore: unused_field
-  final $Res Function(ProjectNames) _then;
+  final $Res Function(ProjectName) _then;
 
   @override
   $Res call({
@@ -70,25 +70,24 @@ class _$ProjectNamesCopyWithImpl<$Res> implements $ProjectNamesCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_ProjectNamesCopyWith<$Res>
-    implements $ProjectNamesCopyWith<$Res> {
-  factory _$$_ProjectNamesCopyWith(
-          _$_ProjectNames value, $Res Function(_$_ProjectNames) then) =
-      __$$_ProjectNamesCopyWithImpl<$Res>;
+abstract class _$$_ProjectNameCopyWith<$Res>
+    implements $ProjectNameCopyWith<$Res> {
+  factory _$$_ProjectNameCopyWith(
+          _$_ProjectName value, $Res Function(_$_ProjectName) then) =
+      __$$_ProjectNameCopyWithImpl<$Res>;
   @override
   $Res call({String id, String name, String url});
 }
 
 /// @nodoc
-class __$$_ProjectNamesCopyWithImpl<$Res>
-    extends _$ProjectNamesCopyWithImpl<$Res>
-    implements _$$_ProjectNamesCopyWith<$Res> {
-  __$$_ProjectNamesCopyWithImpl(
-      _$_ProjectNames _value, $Res Function(_$_ProjectNames) _then)
-      : super(_value, (v) => _then(v as _$_ProjectNames));
+class __$$_ProjectNameCopyWithImpl<$Res> extends _$ProjectNameCopyWithImpl<$Res>
+    implements _$$_ProjectNameCopyWith<$Res> {
+  __$$_ProjectNameCopyWithImpl(
+      _$_ProjectName _value, $Res Function(_$_ProjectName) _then)
+      : super(_value, (v) => _then(v as _$_ProjectName));
 
   @override
-  _$_ProjectNames get _value => super._value as _$_ProjectNames;
+  _$_ProjectName get _value => super._value as _$_ProjectName;
 
   @override
   $Res call({
@@ -96,7 +95,7 @@ class __$$_ProjectNamesCopyWithImpl<$Res>
     Object? name = freezed,
     Object? url = freezed,
   }) {
-    return _then(_$_ProjectNames(
+    return _then(_$_ProjectName(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -115,12 +114,12 @@ class __$$_ProjectNamesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProjectNames implements _ProjectNames {
-  const _$_ProjectNames(
+class _$_ProjectName implements _ProjectName {
+  const _$_ProjectName(
       {required this.id, required this.name, required this.url});
 
-  factory _$_ProjectNames.fromJson(Map<String, dynamic> json) =>
-      _$$_ProjectNamesFromJson(json);
+  factory _$_ProjectName.fromJson(Map<String, dynamic> json) =>
+      _$$_ProjectNameFromJson(json);
 
   @override
   final String id;
@@ -131,14 +130,14 @@ class _$_ProjectNames implements _ProjectNames {
 
   @override
   String toString() {
-    return 'ProjectNames(id: $id, name: $name, url: $url)';
+    return 'ProjectName(id: $id, name: $name, url: $url)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProjectNames &&
+            other is _$_ProjectName &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.url, url));
@@ -154,23 +153,23 @@ class _$_ProjectNames implements _ProjectNames {
 
   @JsonKey(ignore: true)
   @override
-  _$$_ProjectNamesCopyWith<_$_ProjectNames> get copyWith =>
-      __$$_ProjectNamesCopyWithImpl<_$_ProjectNames>(this, _$identity);
+  _$$_ProjectNameCopyWith<_$_ProjectName> get copyWith =>
+      __$$_ProjectNameCopyWithImpl<_$_ProjectName>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProjectNamesToJson(this);
+    return _$$_ProjectNameToJson(this);
   }
 }
 
-abstract class _ProjectNames implements ProjectNames {
-  const factory _ProjectNames(
+abstract class _ProjectName implements ProjectName {
+  const factory _ProjectName(
       {required final String id,
       required final String name,
-      required final String url}) = _$_ProjectNames;
+      required final String url}) = _$_ProjectName;
 
-  factory _ProjectNames.fromJson(Map<String, dynamic> json) =
-      _$_ProjectNames.fromJson;
+  factory _ProjectName.fromJson(Map<String, dynamic> json) =
+      _$_ProjectName.fromJson;
 
   @override
   String get id => throw _privateConstructorUsedError;
@@ -180,6 +179,6 @@ abstract class _ProjectNames implements ProjectNames {
   String get url => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_ProjectNamesCopyWith<_$_ProjectNames> get copyWith =>
+  _$$_ProjectNameCopyWith<_$_ProjectName> get copyWith =>
       throw _privateConstructorUsedError;
 }

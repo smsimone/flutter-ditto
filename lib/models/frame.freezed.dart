@@ -20,8 +20,12 @@ Frame _$FrameFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Frame {
+  @JsonKey(name: 'frame_id')
+  String get frameId => throw _privateConstructorUsedError;
   String get frameName => throw _privateConstructorUsedError;
-  List<dynamic> get blocks => throw _privateConstructorUsedError;
+  @MapToBlockConverter()
+  List<Block> get blocks => throw _privateConstructorUsedError;
+  @MapToTextConverter()
   List<Text> get otherText => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +37,11 @@ mixin _$Frame {
 abstract class $FrameCopyWith<$Res> {
   factory $FrameCopyWith(Frame value, $Res Function(Frame) then) =
       _$FrameCopyWithImpl<$Res>;
-  $Res call({String frameName, List<dynamic> blocks, List<Text> otherText});
+  $Res call(
+      {@JsonKey(name: 'frame_id') String frameId,
+      String frameName,
+      @MapToBlockConverter() List<Block> blocks,
+      @MapToTextConverter() List<Text> otherText});
 }
 
 /// @nodoc
@@ -46,11 +54,16 @@ class _$FrameCopyWithImpl<$Res> implements $FrameCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? frameId = freezed,
     Object? frameName = freezed,
     Object? blocks = freezed,
     Object? otherText = freezed,
   }) {
     return _then(_value.copyWith(
+      frameId: frameId == freezed
+          ? _value.frameId
+          : frameId // ignore: cast_nullable_to_non_nullable
+              as String,
       frameName: frameName == freezed
           ? _value.frameName
           : frameName // ignore: cast_nullable_to_non_nullable
@@ -58,7 +71,7 @@ class _$FrameCopyWithImpl<$Res> implements $FrameCopyWith<$Res> {
       blocks: blocks == freezed
           ? _value.blocks
           : blocks // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<Block>,
       otherText: otherText == freezed
           ? _value.otherText
           : otherText // ignore: cast_nullable_to_non_nullable
@@ -72,7 +85,11 @@ abstract class _$$_FrameCopyWith<$Res> implements $FrameCopyWith<$Res> {
   factory _$$_FrameCopyWith(_$_Frame value, $Res Function(_$_Frame) then) =
       __$$_FrameCopyWithImpl<$Res>;
   @override
-  $Res call({String frameName, List<dynamic> blocks, List<Text> otherText});
+  $Res call(
+      {@JsonKey(name: 'frame_id') String frameId,
+      String frameName,
+      @MapToBlockConverter() List<Block> blocks,
+      @MapToTextConverter() List<Text> otherText});
 }
 
 /// @nodoc
@@ -86,11 +103,16 @@ class __$$_FrameCopyWithImpl<$Res> extends _$FrameCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? frameId = freezed,
     Object? frameName = freezed,
     Object? blocks = freezed,
     Object? otherText = freezed,
   }) {
     return _then(_$_Frame(
+      frameId: frameId == freezed
+          ? _value.frameId
+          : frameId // ignore: cast_nullable_to_non_nullable
+              as String,
       frameName: frameName == freezed
           ? _value.frameName
           : frameName // ignore: cast_nullable_to_non_nullable
@@ -98,7 +120,7 @@ class __$$_FrameCopyWithImpl<$Res> extends _$FrameCopyWithImpl<$Res>
       blocks: blocks == freezed
           ? _value._blocks
           : blocks // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<Block>,
       otherText: otherText == freezed
           ? _value._otherText
           : otherText // ignore: cast_nullable_to_non_nullable
@@ -111,9 +133,10 @@ class __$$_FrameCopyWithImpl<$Res> extends _$FrameCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Frame implements _Frame {
   const _$_Frame(
-      {required this.frameName,
-      required final List<dynamic> blocks = const [],
-      required final List<Text> otherText = const []})
+      {@JsonKey(name: 'frame_id') required this.frameId,
+      required this.frameName,
+      @MapToBlockConverter() final List<Block> blocks = const [],
+      @MapToTextConverter() final List<Text> otherText = const []})
       : _blocks = blocks,
         _otherText = otherText;
 
@@ -121,11 +144,15 @@ class _$_Frame implements _Frame {
       _$$_FrameFromJson(json);
 
   @override
+  @JsonKey(name: 'frame_id')
+  final String frameId;
+  @override
   final String frameName;
-  final List<dynamic> _blocks;
+  final List<Block> _blocks;
   @override
   @JsonKey()
-  List<dynamic> get blocks {
+  @MapToBlockConverter()
+  List<Block> get blocks {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_blocks);
   }
@@ -133,6 +160,7 @@ class _$_Frame implements _Frame {
   final List<Text> _otherText;
   @override
   @JsonKey()
+  @MapToTextConverter()
   List<Text> get otherText {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_otherText);
@@ -140,7 +168,7 @@ class _$_Frame implements _Frame {
 
   @override
   String toString() {
-    return 'Frame(frameName: $frameName, blocks: $blocks, otherText: $otherText)';
+    return 'Frame(frameId: $frameId, frameName: $frameName, blocks: $blocks, otherText: $otherText)';
   }
 
   @override
@@ -148,6 +176,7 @@ class _$_Frame implements _Frame {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Frame &&
+            const DeepCollectionEquality().equals(other.frameId, frameId) &&
             const DeepCollectionEquality().equals(other.frameName, frameName) &&
             const DeepCollectionEquality().equals(other._blocks, _blocks) &&
             const DeepCollectionEquality()
@@ -158,6 +187,7 @@ class _$_Frame implements _Frame {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(frameId),
       const DeepCollectionEquality().hash(frameName),
       const DeepCollectionEquality().hash(_blocks),
       const DeepCollectionEquality().hash(_otherText));
@@ -175,17 +205,23 @@ class _$_Frame implements _Frame {
 
 abstract class _Frame implements Frame {
   const factory _Frame(
-      {required final String frameName,
-      required final List<dynamic> blocks,
-      required final List<Text> otherText}) = _$_Frame;
+      {@JsonKey(name: 'frame_id') required final String frameId,
+      required final String frameName,
+      @MapToBlockConverter() final List<Block> blocks,
+      @MapToTextConverter() final List<Text> otherText}) = _$_Frame;
 
   factory _Frame.fromJson(Map<String, dynamic> json) = _$_Frame.fromJson;
 
   @override
+  @JsonKey(name: 'frame_id')
+  String get frameId => throw _privateConstructorUsedError;
+  @override
   String get frameName => throw _privateConstructorUsedError;
   @override
-  List<dynamic> get blocks => throw _privateConstructorUsedError;
+  @MapToBlockConverter()
+  List<Block> get blocks => throw _privateConstructorUsedError;
   @override
+  @MapToTextConverter()
   List<Text> get otherText => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

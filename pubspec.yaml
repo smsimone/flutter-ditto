@@ -20,5 +20,6 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.0.3+1
   json_serializable: ^6.2.0
+  dotenv: ^4.0.1
 
 flutter: null

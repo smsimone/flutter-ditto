@@ -1,4 +1,4 @@
-import 'package:ditto_sdk/models/text.dart';
+import 'package:ditto_sdk/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'frame.freezed.dart';
@@ -9,9 +9,10 @@ part 'frame.g.dart';
 class Frame with _$Frame {
   ///
   const factory Frame({
+    @JsonKey(name: 'frame_id') required String frameId,
     required String frameName,
-    @Default([]) required List<dynamic> blocks,
-    @Default([]) required List<Text> otherText,
+    @MapToBlockConverter() @Default([]) List<Block> blocks,
+    @MapToTextConverter() @Default([]) List<Text> otherText,
   }) = _Frame;
 
   factory Frame.fromJson(Map<String, dynamic> json) => _Frame.fromJson(json);

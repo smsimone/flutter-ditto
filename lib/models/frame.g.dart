@@ -7,16 +7,21 @@ part of 'frame.dart';
 // **************************************************************************
 
 _$_Frame _$$_FrameFromJson(Map<String, dynamic> json) => _$_Frame(
+      frameId: json['frame_id'] as String,
       frameName: json['frameName'] as String,
-      blocks: json['blocks'] as List<dynamic>? ?? const [],
-      otherText: (json['otherText'] as List<dynamic>?)
-              ?.map((e) => Text.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      blocks: json['blocks'] == null
+          ? const []
+          : const MapToBlockConverter()
+              .fromJson(json['blocks'] as Map<String, dynamic>),
+      otherText: json['otherText'] == null
+          ? const []
+          : const MapToTextConverter()
+              .fromJson(json['otherText'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_FrameToJson(_$_Frame instance) => <String, dynamic>{
+      'frame_id': instance.frameId,
       'frameName': instance.frameName,
-      'blocks': instance.blocks,
-      'otherText': instance.otherText,
+      'blocks': const MapToBlockConverter().toJson(instance.blocks),
+      'otherText': const MapToTextConverter().toJson(instance.otherText),
     };
