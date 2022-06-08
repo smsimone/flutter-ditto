@@ -1,3 +1,3 @@
 library ditto_sdk;
 
-export 'widgets/ditto_provider.dart';
+export 'src/ditto_context.dart';
