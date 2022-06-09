@@ -1,6 +1,8 @@
 name: ditto_sdk
-description: A new Flutter package project.
-version: 0.0.1
+description: Simple SDK to interact with Ditto and retrieve remote localizations.
+version: 0.0.1+1
+homepage: https://github.com/smsimone/ditto_sdk
+publish_to: https://pub.dartlang.org
 
 environment:
   sdk: ">=2.17.1 <3.0.0"
