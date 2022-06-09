@@ -1,4 +1,4 @@
-library ditto_sdk;
+library flutter_ditto;
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

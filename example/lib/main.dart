@@ -1,5 +1,5 @@
-import 'package:ditto_sdk/api/api_exports.dart';
-import 'package:ditto_sdk/ditto_sdk.dart';
+import 'package:flutter_ditto/api/api_exports.dart';
+import 'package:flutter_ditto/flutter_ditto.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {

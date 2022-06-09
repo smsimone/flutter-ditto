@@ -1,7 +1,7 @@
-import 'package:ditto_sdk/ditto_sdk.dart';
-import 'package:ditto_sdk/src/delegates/localization_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ditto/flutter_ditto.dart';
+import 'package:flutter_ditto/src/delegates/localization_provider.dart';
 
 class DittoLocalizationsDelegate
     extends LocalizationsDelegate<LocalizationProvider> {

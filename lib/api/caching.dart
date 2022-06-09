@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:ditto_sdk/api/models/models.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_ditto/api/models/models.dart';
 import 'package:path_provider/path_provider.dart';
 
 const _textKey = 'ditto_text_key_cache';

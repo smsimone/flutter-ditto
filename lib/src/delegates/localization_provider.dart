@@ -1,6 +1,6 @@
-import 'package:ditto_sdk/api/models/models.dart';
-import 'package:ditto_sdk/ditto_sdk.dart';
 import 'package:flutter/material.dart' hide Text;
+import 'package:flutter_ditto/api/models/models.dart';
+import 'package:flutter_ditto/flutter_ditto.dart';
 
 class LocalizationProvider {
   LocalizationProvider(this._currentLocale);

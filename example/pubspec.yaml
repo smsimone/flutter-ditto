@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  ditto_sdk:
+  flutter_ditto:
     path: ../
   cupertino_icons: ^1.0.2
 

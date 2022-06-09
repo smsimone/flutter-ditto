@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:ditto_sdk/api/api_exports.dart';
-import 'package:ditto_sdk/api/connection/api_connection.dart';
-import 'package:ditto_sdk/api/models/text.dart';
-import 'package:ditto_sdk/src/delegates/localization_provider.dart';
-import 'package:ditto_sdk/src/exceptions/missing_locale_exception.dart';
 import 'package:flutter/material.dart' hide Text;
+import 'package:flutter_ditto/api/api_exports.dart';
+import 'package:flutter_ditto/api/connection/api_connection.dart';
+import 'package:flutter_ditto/api/models/text.dart';
+import 'package:flutter_ditto/src/delegates/localization_provider.dart';
+import 'package:flutter_ditto/src/exceptions/missing_locale_exception.dart';
 
 class DittoStore {
   factory DittoStore() => _instance;

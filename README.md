@@ -1,4 +1,4 @@
-# Ditto SDK
+# Flutter_ditto
 
 This packages aims to provide a simple integration with Dittowords localizations like it's done on React by [ditto-react](https://www.npmjs.com/package/ditto-react).
 

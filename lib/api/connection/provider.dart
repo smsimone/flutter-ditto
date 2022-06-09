@@ -1,4 +1,4 @@
-import 'package:ditto_sdk/api/api_exports.dart';
+import 'package:flutter_ditto/api/api_exports.dart';
 import 'package:http/http.dart';
 
 class DittoProvider {

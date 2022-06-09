@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ditto_sdk",
+            "name": "flutter_ditto",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "ditto_sdk (profile mode)",
+            "name": "flutter_ditto (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "ditto_sdk (release mode)",
+            "name": "flutter_ditto (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
