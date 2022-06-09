@@ -1,7 +1,7 @@
 class DittoConfigs {
   factory DittoConfigs([DittoConfigData? data]) {
     if (_instance == null) {
-      assert(data != null, 'For first initialization pass DittoConfigData');
+      assert(data != null, 'For first initialization give DittoConfigData');
     }
     return _instance ??= DittoConfigs._(data!);
   }

@@ -23,6 +23,37 @@ class Text with _$Text {
   }) = _Text;
 
   factory Text.fromJson(Map<String, dynamic> json) => _Text.fromJson(json);
+
+  const Text._();
+
+  String applyVariables(Map<String, String>? toApply) {
+    assert(
+      variables == null || toApply != null,
+      'Variables are required for key $key',
+    );
+    assert(() {
+      if (variables == null) return true;
+
+      final keysNeeded = variables!.entries.map((e) => e.key).toSet();
+      final keysProvided = toApply!.entries.map((e) => e.key).toSet();
+
+      if (keysNeeded.difference(keysProvided).isNotEmpty) {
+        throw ArgumentError(
+          'Variables are missing for key $key: ${keysNeeded.difference(keysProvided)}',
+        );
+      }
+
+      return true;
+    }());
+
+    var currentText = text;
+    if (toApply != null) {
+      toApply.forEach((key, value) {
+        currentText = currentText.replaceAll('{{$key}}', value);
+      });
+    }
+    return currentText;
+  }
 }
 
 Map<String, Text>? variantsFromJson(Map<String, dynamic>? json) {

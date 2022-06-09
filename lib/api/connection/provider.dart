@@ -1,5 +1,4 @@
 import 'package:ditto_sdk/api/api_exports.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class DittoProvider {
@@ -23,15 +22,10 @@ class DittoProvider {
       queryParams,
     );
 
-    debugPrint('[DittoProvider-GET] $path');
-
     final response = await _client.get(
       uri,
       headers: {'Authorization': 'token ${DittoConfigs().apiKey}'},
     );
-
-    debugPrint(
-        '[DittoProvider-GET] $path - ${response.statusCode}${response.statusCode == 200 ? '' : ' - ${response.body}'}');
 
     return response;
   }

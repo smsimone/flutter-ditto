@@ -239,7 +239,7 @@ class __$$_TextCopyWithImpl<$Res> extends _$TextCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Text implements _Text {
+class _$_Text extends _Text {
   const _$_Text(
       {@JsonKey(name: 'key', includeIfNull: false)
           this.key,
@@ -261,7 +261,8 @@ class _$_Text implements _Text {
           this.isComp})
       : _variables = variables,
         _variants = variants,
-        _tags = tags;
+        _tags = tags,
+        super._();
 
   factory _$_Text.fromJson(Map<String, dynamic> json) => _$$_TextFromJson(json);
 
@@ -364,7 +365,7 @@ class _$_Text implements _Text {
   }
 }
 
-abstract class _Text implements Text {
+abstract class _Text extends Text {
   const factory _Text(
       {@JsonKey(name: 'key', includeIfNull: false)
           final String? key,
@@ -384,6 +385,7 @@ abstract class _Text implements Text {
       @JsonKey(includeIfNull: false)
       @JsonKey(name: 'is_comp')
           final bool? isComp}) = _$_Text;
+  const _Text._() : super._();
 
   factory _Text.fromJson(Map<String, dynamic> json) = _$_Text.fromJson;
 
