@@ -2,7 +2,18 @@ import 'package:ditto_sdk/api/api_exports.dart';
 import 'package:ditto_sdk/ditto_sdk.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await DittoStore().initialize(
+    configs: DittoConfigData.base(
+      projectId: '<YOUR_PROJECT_ID>',
+      apiKey: '<YOUR_API_KEY>',
+    ),
+  );
+
+  runApp(const MyApp());
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -16,12 +27,14 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return DittoMaterialApp(
       title: 'Ditto test',
-      configData: DittoConfigData.base(
-        projectId: '<YOUR-PROJECT-ID>',
-        apiKey: '<YOUR-API-KEY>',
-      ),
       fallbackLocale: const Locale('en'),
       home: const MyHomePage(),
+      loadingPlaceholder: Container(
+        color: Theme.of(context).primaryColor,
+        child: const Center(
+          child: CircularProgressIndicator(color: Colors.white),
+        ),
+      ),
     );
   }
 }
@@ -72,7 +85,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(2000),
+                  lastDate: DateTime(2023),
+                );
+              },
               child: Text(
                 'btn_login'.translate(),
               ),

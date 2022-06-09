@@ -5,20 +5,22 @@ import 'package:ditto_sdk/ditto_sdk.dart';
 import 'package:flutter/material.dart';
 
 class DittoMaterialApp extends StatefulWidget {
-  const DittoMaterialApp({
+  DittoMaterialApp({
     required this.title,
     required this.home,
-    required this.configData,
+    this.configData,
     this.loadingPlaceholder,
     this.customDefaultLocale,
     this.fallbackLocale,
     super.key,
-  });
+  }) : assert(
+          configData != null || DittoStore().isInitialized,
+        );
 
   final String title;
   final Widget home;
   final Widget? loadingPlaceholder;
-  final DittoConfigData configData;
+  final DittoConfigData? configData;
   final Locale? customDefaultLocale;
   final Locale? fallbackLocale;
 
@@ -32,14 +34,18 @@ class _DittoMaterialAppState extends State<DittoMaterialApp> {
   @override
   void initState() {
     super.initState();
-    DittoStore().initialize(configs: widget.configData).then((supported) {
-      if (!_languageCompleter.isCompleted) {
-        _languageCompleter.complete(supported);
-      }
-    }).onError((error, stackTrace) {
-      debugPrint('Got error while initializing Ditto SDK: $error');
-      throw error as Error;
-    });
+    if (widget.configData != null) {
+      DittoStore().initialize(configs: widget.configData!).then((supported) {
+        if (!_languageCompleter.isCompleted) {
+          _languageCompleter.complete(supported);
+        }
+      }).onError((error, stackTrace) {
+        debugPrint('Got error while initializing Ditto SDK: $error');
+        throw Exception(error);
+      });
+    } else {
+      _languageCompleter.complete(DittoStore().supportedLocales);
+    }
   }
 
   @override

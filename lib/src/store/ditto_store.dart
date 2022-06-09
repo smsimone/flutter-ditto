@@ -42,8 +42,6 @@ class DittoStore {
       throw MissingLocalizationException(DittoConfigs().projectId);
     }
 
-    debugPrint('Downloaded ditto resources');
-
     _texts = texts;
     _initializeCompleter.complete();
     return _downloadedLocales;
