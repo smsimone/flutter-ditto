@@ -1,6 +1,14 @@
+
+[![wakatime](https://wakatime.com/badge/user/6de661cc-aaf6-48d1-b19c-3b8aa8990b73/project/e121e3ca-b7f1-4bf2-a1f7-25c659090e38.svg)](https://wakatime.com/badge/user/6de661cc-aaf6-48d1-b19c-3b8aa8990b73/project/e121e3ca-b7f1-4bf2-a1f7-25c659090e38)
+
 # Flutter_ditto
 
 This packages aims to provide a simple integration with Dittowords localizations like it's done on React by [ditto-react](https://www.npmjs.com/package/ditto-react).
+
+> Like my work?
+> 
+> [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/smsimone)
+
 
 ## TODOS
 
