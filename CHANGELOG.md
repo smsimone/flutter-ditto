@@ -1,3 +1,5 @@
-## 0.0.1
+## 0.0.1+1
 
-* TODO: Describe initial release.
+* Connect your app to [ditto](dittowords.com) and download remote localizations
+* Automatically updates the localizations and saves them in cache
+* Simple string and strings with variables translations
