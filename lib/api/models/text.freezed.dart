@@ -30,8 +30,11 @@ mixin _$Text {
   String? get status => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   String? get notes => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  Map<String, dynamic>? get variables => throw _privateConstructorUsedError;
+  @JsonKey(
+      includeIfNull: false,
+      fromJson: variablesFromJson,
+      toJson: variablesToJson)
+  List<Variable>? get variables => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   Plurals? get plurals => throw _privateConstructorUsedError;
   @JsonKey(fromJson: variantsFromJson, includeIfNull: false)
@@ -59,8 +62,8 @@ abstract class $TextCopyWith<$Res> {
           String? status,
       @JsonKey(includeIfNull: false)
           String? notes,
-      @JsonKey(includeIfNull: false)
-          Map<String, dynamic>? variables,
+      @JsonKey(includeIfNull: false, fromJson: variablesFromJson, toJson: variablesToJson)
+          List<Variable>? variables,
       @JsonKey(includeIfNull: false)
           Plurals? plurals,
       @JsonKey(fromJson: variantsFromJson, includeIfNull: false)
@@ -114,7 +117,7 @@ class _$TextCopyWithImpl<$Res> implements $TextCopyWith<$Res> {
       variables: variables == freezed
           ? _value.variables
           : variables // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+              as List<Variable>?,
       plurals: plurals == freezed
           ? _value.plurals
           : plurals // ignore: cast_nullable_to_non_nullable
@@ -159,8 +162,8 @@ abstract class _$$_TextCopyWith<$Res> implements $TextCopyWith<$Res> {
           String? status,
       @JsonKey(includeIfNull: false)
           String? notes,
-      @JsonKey(includeIfNull: false)
-          Map<String, dynamic>? variables,
+      @JsonKey(includeIfNull: false, fromJson: variablesFromJson, toJson: variablesToJson)
+          List<Variable>? variables,
       @JsonKey(includeIfNull: false)
           Plurals? plurals,
       @JsonKey(fromJson: variantsFromJson, includeIfNull: false)
@@ -216,7 +219,7 @@ class __$$_TextCopyWithImpl<$Res> extends _$TextCopyWithImpl<$Res>
       variables: variables == freezed
           ? _value._variables
           : variables // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+              as List<Variable>?,
       plurals: plurals == freezed
           ? _value.plurals
           : plurals // ignore: cast_nullable_to_non_nullable
@@ -248,8 +251,8 @@ class _$_Text extends _Text {
           this.status,
       @JsonKey(includeIfNull: false)
           this.notes,
-      @JsonKey(includeIfNull: false)
-          final Map<String, dynamic>? variables,
+      @JsonKey(includeIfNull: false, fromJson: variablesFromJson, toJson: variablesToJson)
+          final List<Variable>? variables,
       @JsonKey(includeIfNull: false)
           this.plurals,
       @JsonKey(fromJson: variantsFromJson, includeIfNull: false)
@@ -280,14 +283,17 @@ class _$_Text extends _Text {
   @override
   @JsonKey(includeIfNull: false)
   final String? notes;
-  final Map<String, dynamic>? _variables;
+  final List<Variable>? _variables;
   @override
-  @JsonKey(includeIfNull: false)
-  Map<String, dynamic>? get variables {
+  @JsonKey(
+      includeIfNull: false,
+      fromJson: variablesFromJson,
+      toJson: variablesToJson)
+  List<Variable>? get variables {
     final value = _variables;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -374,8 +380,8 @@ abstract class _Text extends Text {
           final String? status,
       @JsonKey(includeIfNull: false)
           final String? notes,
-      @JsonKey(includeIfNull: false)
-          final Map<String, dynamic>? variables,
+      @JsonKey(includeIfNull: false, fromJson: variablesFromJson, toJson: variablesToJson)
+          final List<Variable>? variables,
       @JsonKey(includeIfNull: false)
           final Plurals? plurals,
       @JsonKey(fromJson: variantsFromJson, includeIfNull: false)
@@ -405,8 +411,11 @@ abstract class _Text extends Text {
   @JsonKey(includeIfNull: false)
   String? get notes => throw _privateConstructorUsedError;
   @override
-  @JsonKey(includeIfNull: false)
-  Map<String, dynamic>? get variables => throw _privateConstructorUsedError;
+  @JsonKey(
+      includeIfNull: false,
+      fromJson: variablesFromJson,
+      toJson: variablesToJson)
+  List<Variable>? get variables => throw _privateConstructorUsedError;
   @override
   @JsonKey(includeIfNull: false)
   Plurals? get plurals => throw _privateConstructorUsedError;

@@ -21,6 +21,8 @@ Plurals _$PluralsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Plurals {
   String? get zero => throw _privateConstructorUsedError;
+  String? get one => throw _privateConstructorUsedError;
+  String? get two => throw _privateConstructorUsedError;
   String? get few => throw _privateConstructorUsedError;
   String? get many => throw _privateConstructorUsedError;
   String? get other => throw _privateConstructorUsedError;
@@ -34,7 +36,13 @@ mixin _$Plurals {
 abstract class $PluralsCopyWith<$Res> {
   factory $PluralsCopyWith(Plurals value, $Res Function(Plurals) then) =
       _$PluralsCopyWithImpl<$Res>;
-  $Res call({String? zero, String? few, String? many, String? other});
+  $Res call(
+      {String? zero,
+      String? one,
+      String? two,
+      String? few,
+      String? many,
+      String? other});
 }
 
 /// @nodoc
@@ -48,6 +56,8 @@ class _$PluralsCopyWithImpl<$Res> implements $PluralsCopyWith<$Res> {
   @override
   $Res call({
     Object? zero = freezed,
+    Object? one = freezed,
+    Object? two = freezed,
     Object? few = freezed,
     Object? many = freezed,
     Object? other = freezed,
@@ -56,6 +66,14 @@ class _$PluralsCopyWithImpl<$Res> implements $PluralsCopyWith<$Res> {
       zero: zero == freezed
           ? _value.zero
           : zero // ignore: cast_nullable_to_non_nullable
+              as String?,
+      one: one == freezed
+          ? _value.one
+          : one // ignore: cast_nullable_to_non_nullable
+              as String?,
+      two: two == freezed
+          ? _value.two
+          : two // ignore: cast_nullable_to_non_nullable
               as String?,
       few: few == freezed
           ? _value.few
@@ -79,7 +97,13 @@ abstract class _$$_PluralsCopyWith<$Res> implements $PluralsCopyWith<$Res> {
           _$_Plurals value, $Res Function(_$_Plurals) then) =
       __$$_PluralsCopyWithImpl<$Res>;
   @override
-  $Res call({String? zero, String? few, String? many, String? other});
+  $Res call(
+      {String? zero,
+      String? one,
+      String? two,
+      String? few,
+      String? many,
+      String? other});
 }
 
 /// @nodoc
@@ -94,6 +118,8 @@ class __$$_PluralsCopyWithImpl<$Res> extends _$PluralsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? zero = freezed,
+    Object? one = freezed,
+    Object? two = freezed,
     Object? few = freezed,
     Object? many = freezed,
     Object? other = freezed,
@@ -102,6 +128,14 @@ class __$$_PluralsCopyWithImpl<$Res> extends _$PluralsCopyWithImpl<$Res>
       zero: zero == freezed
           ? _value.zero
           : zero // ignore: cast_nullable_to_non_nullable
+              as String?,
+      one: one == freezed
+          ? _value.one
+          : one // ignore: cast_nullable_to_non_nullable
+              as String?,
+      two: two == freezed
+          ? _value.two
+          : two // ignore: cast_nullable_to_non_nullable
               as String?,
       few: few == freezed
           ? _value.few
@@ -121,14 +155,20 @@ class __$$_PluralsCopyWithImpl<$Res> extends _$PluralsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Plurals implements _Plurals {
-  const _$_Plurals({this.zero, this.few, this.many, this.other});
+class _$_Plurals extends _Plurals {
+  const _$_Plurals(
+      {this.zero, this.one, this.two, this.few, this.many, this.other})
+      : super._();
 
   factory _$_Plurals.fromJson(Map<String, dynamic> json) =>
       _$$_PluralsFromJson(json);
 
   @override
   final String? zero;
+  @override
+  final String? one;
+  @override
+  final String? two;
   @override
   final String? few;
   @override
@@ -138,7 +178,7 @@ class _$_Plurals implements _Plurals {
 
   @override
   String toString() {
-    return 'Plurals(zero: $zero, few: $few, many: $many, other: $other)';
+    return 'Plurals(zero: $zero, one: $one, two: $two, few: $few, many: $many, other: $other)';
   }
 
   @override
@@ -147,6 +187,8 @@ class _$_Plurals implements _Plurals {
         (other.runtimeType == runtimeType &&
             other is _$_Plurals &&
             const DeepCollectionEquality().equals(other.zero, zero) &&
+            const DeepCollectionEquality().equals(other.one, one) &&
+            const DeepCollectionEquality().equals(other.two, two) &&
             const DeepCollectionEquality().equals(other.few, few) &&
             const DeepCollectionEquality().equals(other.many, many) &&
             const DeepCollectionEquality().equals(other.other, this.other));
@@ -157,6 +199,8 @@ class _$_Plurals implements _Plurals {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(zero),
+      const DeepCollectionEquality().hash(one),
+      const DeepCollectionEquality().hash(two),
       const DeepCollectionEquality().hash(few),
       const DeepCollectionEquality().hash(many),
       const DeepCollectionEquality().hash(other));
@@ -172,17 +216,24 @@ class _$_Plurals implements _Plurals {
   }
 }
 
-abstract class _Plurals implements Plurals {
+abstract class _Plurals extends Plurals {
   const factory _Plurals(
       {final String? zero,
+      final String? one,
+      final String? two,
       final String? few,
       final String? many,
       final String? other}) = _$_Plurals;
+  const _Plurals._() : super._();
 
   factory _Plurals.fromJson(Map<String, dynamic> json) = _$_Plurals.fromJson;
 
   @override
   String? get zero => throw _privateConstructorUsedError;
+  @override
+  String? get one => throw _privateConstructorUsedError;
+  @override
+  String? get two => throw _privateConstructorUsedError;
   @override
   String? get few => throw _privateConstructorUsedError;
   @override

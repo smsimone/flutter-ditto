@@ -1,6 +1,8 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_ditto/api/api_exports.dart';
 import 'package:flutter_ditto/flutter_ditto.dart';
-import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,6 +50,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _emailNotifier = ValueNotifier<String?>(null);
+  final _clickedNotifier = ValueNotifier<int>(0);
 
   @override
   Widget build(BuildContext context) {
@@ -84,15 +87,31 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () =>
+                      _clickedNotifier.value = _clickedNotifier.value + 1,
+                  child: const Text('+'),
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () => _clickedNotifier.value =
+                      max(0, _clickedNotifier.value - 1),
+                  child: const Text('-'),
+                ),
+              ],
+            ),
+            ValueListenableBuilder<int>(
+              valueListenable: _clickedNotifier,
+              builder: (context, data, _) => Text(
+                'text_clicked'.translate({'count': data.toString()}, data),
+              ),
+            ),
+            const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(2000),
-                  lastDate: DateTime(2023),
-                );
-              },
+              onPressed: () {},
               child: Text(
                 'btn_login'.translate(),
               ),

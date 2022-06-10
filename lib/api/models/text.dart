@@ -1,4 +1,5 @@
 import 'package:flutter_ditto/api/models/models.dart';
+import 'package:flutter_ditto/api/models/variable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'text.freezed.dart';
@@ -10,16 +11,28 @@ class Text with _$Text {
     /// Viene valorizzato solo se è una chiave di primo livello
     ///
     /// Per le varianti è nullo
-    @JsonKey(name: 'key', includeIfNull: false) String? key,
+    @JsonKey(name: 'key', includeIfNull: false)
+        String? key,
     required String text,
-    @JsonKey(includeIfNull: false) String? status,
-    @JsonKey(includeIfNull: false) String? notes,
-    @JsonKey(includeIfNull: false) Map<String, dynamic>? variables,
-    @JsonKey(includeIfNull: false) Plurals? plurals,
+    @JsonKey(includeIfNull: false)
+        String? status,
+    @JsonKey(includeIfNull: false)
+        String? notes,
+    @JsonKey(
+      includeIfNull: false,
+      fromJson: variablesFromJson,
+      toJson: variablesToJson,
+    )
+        List<Variable>? variables,
+    @JsonKey(includeIfNull: false)
+        Plurals? plurals,
     @JsonKey(fromJson: variantsFromJson, includeIfNull: false)
         Map<String, Text>? variants,
-    @JsonKey(includeIfNull: false) List<String>? tags,
-    @JsonKey(includeIfNull: false) @JsonKey(name: 'is_comp') bool? isComp,
+    @JsonKey(includeIfNull: false)
+        List<String>? tags,
+    @JsonKey(includeIfNull: false)
+    @JsonKey(name: 'is_comp')
+        bool? isComp,
   }) = _Text;
 
   factory Text.fromJson(Map<String, dynamic> json) => _Text.fromJson(json);
@@ -34,7 +47,7 @@ class Text with _$Text {
     assert(() {
       if (variables == null) return true;
 
-      final keysNeeded = variables!.entries.map((e) => e.key).toSet();
+      final keysNeeded = variables!.map((e) => e.variableName).toSet();
       final keysProvided = toApply!.entries.map((e) => e.key).toSet();
 
       if (keysNeeded.difference(keysProvided).isNotEmpty) {
@@ -63,5 +76,20 @@ Map<String, Text>? variantsFromJson(Map<String, dynamic>? json) {
     (e) => MapEntry(e.key, Text.fromJson(e.value as Map<String, dynamic>)),
   );
 
+  return Map.fromEntries(data);
+}
+
+List<Variable>? variablesFromJson(Map<String, dynamic>? json) {
+  if (json == null) return null;
+  final data = json.entries
+      .map((e) => Variable.fromJson((e.value as Map<String, dynamic>)
+        ..putIfAbsent('variable_name', () => e.key)))
+      .toList();
+  return data;
+}
+
+Map<String, dynamic> variablesToJson(List<Variable>? variables) {
+  if (variables == null) return {};
+  final data = variables.map((e) => MapEntry(e.variableName, e.toJson()));
   return Map.fromEntries(data);
 }
