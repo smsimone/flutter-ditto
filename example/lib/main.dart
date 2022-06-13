@@ -9,9 +9,8 @@ Future<void> main() async {
 
   await DittoStore().initialize(
     DittoConfigData.base(
-      projectId: '62a1ba584f31acbe34ad13c6',
-      apiKey:
-          'a7fbb013-7345-42ca-a86b-3899fe628b99.d37f7501d55a71428bf581eb1ba3ff3b8e0ad1ef',
+      projectId: '<YOUR-PROJECT-ID>',
+      apiKey: '<YOUR-API-KEY>',
     ),
   );
 
