@@ -8,9 +8,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await DittoStore().initialize(
-    configs: DittoConfigData.base(
-      projectId: '<YOUR_PROJECT_ID>',
-      apiKey: '<YOUR_API_KEY>',
+    DittoConfigData.base(
+      projectId: '62a1ba584f31acbe34ad13c6',
+      apiKey:
+          'a7fbb013-7345-42ca-a86b-3899fe628b99.d37f7501d55a71428bf581eb1ba3ff3b8e0ad1ef',
     ),
   );
 
@@ -81,7 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Text(
-                    'text_inserted_email'.translate({'email': snap ?? '-'}),
+                    'text_inserted_email'
+                        .translate(variables: {'email': snap ?? '-'}),
                   ),
                 ),
               ),
@@ -106,7 +108,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ValueListenableBuilder<int>(
               valueListenable: _clickedNotifier,
               builder: (context, data, _) => Text(
-                'text_clicked'.translate({'count': data.toString()}, data),
+                'text_clicked'.translate(
+                  variables: {'count': null},
+                  count: data,
+                ),
               ),
             ),
             const SizedBox(height: 20),
