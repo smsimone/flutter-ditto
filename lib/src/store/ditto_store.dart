@@ -31,9 +31,7 @@ class DittoStore {
   }
 
   /// Returns the locales that are supported
-  Future<List<Locale>> initialize({
-    required DittoConfigData configs,
-  }) async {
+  Future<List<Locale>> initialize(DittoConfigData configs) async {
     DittoConfigs(configs);
     await _getSupportedLocales();
     final texts = await ApiConnection().getStructuredTexts(null);

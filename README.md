@@ -91,4 +91,9 @@ As you wrapped your app with `DittoMaterialApp`, you can now translate your text
 
 /// For a translation with a variable
 'variable_key'.translate({'var_name': 'var_value'})
+/// If you want to hide a variable, use `null`
+'variable_key'.translate({'var_name': null})
+
+/// For a translation with plurals
+'plural_key'.translate({'var_name': 'var_value'}, 2)
 ```
