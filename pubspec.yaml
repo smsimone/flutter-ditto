@@ -1,6 +1,6 @@
 name: flutter_ditto
 description: Simple library to interact with Ditto and retrieve remote localizations.
-version: 0.0.2+1
+version: 0.0.3+1
 homepage: https://github.com/smsimone/flutter-ditto.git
 
 environment:
@@ -15,8 +15,7 @@ dependencies:
   json_annotation: ^4.5.0
   flutter_localizations:
     sdk: flutter
-  flutter_cache_manager: ^3.3.0
-  path_provider: ^2.0.11
+  flutter_cache: ^0.1.0
 
 dev_dependencies:
   build_runner: ^2.1.11

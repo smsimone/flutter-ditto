@@ -1,3 +1,6 @@
+## 0.0.3+1
+* Added support to other platforms by removing `path_provider` package
+
 ## 0.0.2+1
 * **BREAKING CHANGES**
   * Removed named parameter `configs` from `DittoStore().initialize()` to make it a positional parameter

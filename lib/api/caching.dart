@@ -1,33 +1,26 @@
 import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_cache/flutter_cache.dart';
 import 'package:flutter_ditto/api/models/models.dart';
-import 'package:path_provider/path_provider.dart';
 
 const _textKey = 'ditto_text_key_cache';
 
 /// Saves the [data] in cache
 Future<void> saveTextData(List<Text> data) async {
   try {
-    final manager = DefaultCacheManager();
-
     final jsonData = data.map((e) => e.toJson()).toList();
 
-    final dir = await getApplicationDocumentsDirectory();
-    final file = File('${dir.path}/ditto_text_key_cache.json');
-
-    await manager.putFile(
-      file.path,
-      Uint8List.fromList(utf8.encode(jsonEncode({
-        'data': jsonData,
-        'savedAt': DateTime.now().millisecondsSinceEpoch,
-      }))),
-      fileExtension: 'json',
-      key: _textKey,
-    );
+    await remember(
+      _textKey,
+      jsonEncode(
+        {'data': jsonData, 'savedAt': DateTime.now().millisecondsSinceEpoch},
+      ),
+      const Duration(minutes: 5).inSeconds,
+    ).onError((error, stackTrace) {
+      debugPrint('Failed to store data: ${error.toString()}');
+      debugPrint(stackTrace.toString());
+    });
 
     debugPrint('Saved updated translations to cache');
   } catch (e, s) {
@@ -41,17 +34,12 @@ Future<void> saveTextData(List<Text> data) async {
 Future<List<Text>?> reloadTextData() async {
   final start = DateTime.now();
   try {
-    final manager = DefaultCacheManager();
-    final fileInfo = await manager.getFileFromCache(_textKey);
-
-    if (fileInfo == null) {
+    final data = await load(_textKey);
+    if (data is! String) {
       return null;
     }
 
-    final file = fileInfo.file;
-    final data = jsonDecode(utf8.decode(await file.readAsBytes()));
-
-    return (data['data'] as List<dynamic>)
+    return (jsonDecode(data)['data'] as List<dynamic>)
         .map((t) => Text.fromJson(t))
         .toList();
   } catch (e, s) {
