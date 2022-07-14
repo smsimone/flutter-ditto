@@ -44,6 +44,8 @@ mixin _$Text {
   @JsonKey(includeIfNull: false)
   @JsonKey(name: 'is_comp')
   bool? get isComp => throw _privateConstructorUsedError;
+  @JsonKey(name: 'component_api_id')
+  String? get componentId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -72,7 +74,9 @@ abstract class $TextCopyWith<$Res> {
           List<String>? tags,
       @JsonKey(includeIfNull: false)
       @JsonKey(name: 'is_comp')
-          bool? isComp});
+          bool? isComp,
+      @JsonKey(name: 'component_api_id')
+          String? componentId});
 
   $PluralsCopyWith<$Res>? get plurals;
 }
@@ -96,6 +100,7 @@ class _$TextCopyWithImpl<$Res> implements $TextCopyWith<$Res> {
     Object? variants = freezed,
     Object? tags = freezed,
     Object? isComp = freezed,
+    Object? componentId = freezed,
   }) {
     return _then(_value.copyWith(
       key: key == freezed
@@ -134,6 +139,10 @@ class _$TextCopyWithImpl<$Res> implements $TextCopyWith<$Res> {
           ? _value.isComp
           : isComp // ignore: cast_nullable_to_non_nullable
               as bool?,
+      componentId: componentId == freezed
+          ? _value.componentId
+          : componentId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -172,7 +181,9 @@ abstract class _$$_TextCopyWith<$Res> implements $TextCopyWith<$Res> {
           List<String>? tags,
       @JsonKey(includeIfNull: false)
       @JsonKey(name: 'is_comp')
-          bool? isComp});
+          bool? isComp,
+      @JsonKey(name: 'component_api_id')
+          String? componentId});
 
   @override
   $PluralsCopyWith<$Res>? get plurals;
@@ -198,6 +209,7 @@ class __$$_TextCopyWithImpl<$Res> extends _$TextCopyWithImpl<$Res>
     Object? variants = freezed,
     Object? tags = freezed,
     Object? isComp = freezed,
+    Object? componentId = freezed,
   }) {
     return _then(_$_Text(
       key: key == freezed
@@ -236,6 +248,10 @@ class __$$_TextCopyWithImpl<$Res> extends _$TextCopyWithImpl<$Res>
           ? _value.isComp
           : isComp // ignore: cast_nullable_to_non_nullable
               as bool?,
+      componentId: componentId == freezed
+          ? _value.componentId
+          : componentId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -261,7 +277,9 @@ class _$_Text extends _Text {
           final List<String>? tags,
       @JsonKey(includeIfNull: false)
       @JsonKey(name: 'is_comp')
-          this.isComp})
+          this.isComp,
+      @JsonKey(name: 'component_api_id')
+          this.componentId})
       : _variables = variables,
         _variants = variants,
         _tags = tags,
@@ -323,10 +341,13 @@ class _$_Text extends _Text {
   @JsonKey(includeIfNull: false)
   @JsonKey(name: 'is_comp')
   final bool? isComp;
+  @override
+  @JsonKey(name: 'component_api_id')
+  final String? componentId;
 
   @override
   String toString() {
-    return 'Text(key: $key, text: $text, status: $status, notes: $notes, variables: $variables, plurals: $plurals, variants: $variants, tags: $tags, isComp: $isComp)';
+    return 'Text(key: $key, text: $text, status: $status, notes: $notes, variables: $variables, plurals: $plurals, variants: $variants, tags: $tags, isComp: $isComp, componentId: $componentId)';
   }
 
   @override
@@ -343,7 +364,9 @@ class _$_Text extends _Text {
             const DeepCollectionEquality().equals(other.plurals, plurals) &&
             const DeepCollectionEquality().equals(other._variants, _variants) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
-            const DeepCollectionEquality().equals(other.isComp, isComp));
+            const DeepCollectionEquality().equals(other.isComp, isComp) &&
+            const DeepCollectionEquality()
+                .equals(other.componentId, componentId));
   }
 
   @JsonKey(ignore: true)
@@ -358,7 +381,8 @@ class _$_Text extends _Text {
       const DeepCollectionEquality().hash(plurals),
       const DeepCollectionEquality().hash(_variants),
       const DeepCollectionEquality().hash(_tags),
-      const DeepCollectionEquality().hash(isComp));
+      const DeepCollectionEquality().hash(isComp),
+      const DeepCollectionEquality().hash(componentId));
 
   @JsonKey(ignore: true)
   @override
@@ -390,7 +414,9 @@ abstract class _Text extends Text {
           final List<String>? tags,
       @JsonKey(includeIfNull: false)
       @JsonKey(name: 'is_comp')
-          final bool? isComp}) = _$_Text;
+          final bool? isComp,
+      @JsonKey(name: 'component_api_id')
+          final String? componentId}) = _$_Text;
   const _Text._() : super._();
 
   factory _Text.fromJson(Map<String, dynamic> json) = _$_Text.fromJson;
@@ -429,6 +455,9 @@ abstract class _Text extends Text {
   @JsonKey(includeIfNull: false)
   @JsonKey(name: 'is_comp')
   bool? get isComp => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'component_api_id')
+  String? get componentId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_TextCopyWith<_$_Text> get copyWith => throw _privateConstructorUsedError;

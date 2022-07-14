@@ -5,6 +5,8 @@ import 'package:flutter_ditto/src/delegates/localization_provider.dart';
 
 class DittoLocalizationsDelegate
     extends LocalizationsDelegate<LocalizationProvider> {
+  Locale? _loadedLocale;
+
   @override
   bool isSupported(Locale locale) {
     final locales = DittoStore().supportedLocales.map((l) => l.languageCode);
@@ -14,13 +16,13 @@ class DittoLocalizationsDelegate
 
   @override
   Future<LocalizationProvider> load(Locale locale) {
+    _loadedLocale = locale;
     return SynchronousFuture<LocalizationProvider>(
-      DittoStore().set(
-        LocalizationProvider(locale),
-      ),
+      DittoStore().set(LocalizationProvider(locale)),
     );
   }
 
   @override
-  bool shouldReload(DittoLocalizationsDelegate old) => true;
+  bool shouldReload(DittoLocalizationsDelegate old) =>
+      old._loadedLocale != _loadedLocale;
 }

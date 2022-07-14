@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -37,12 +38,26 @@ class DittoCupertinoApp extends StatefulWidget {
   final CupertinoThemeData? theme;
   final Locale? Function(Locale?, Iterable<Locale>)? localeResolutionCallback;
 
+  static void setLocale(BuildContext context, Locale locale) {
+    assert(DittoLocalizationsDelegate().isSupported(locale));
+    final state = context.findAncestorStateOfType<_DittoCupertinoAppState>();
+    if (state != null) {
+      // ignore: invalid_use_of_protected_member
+      state.setState(() {
+        state._locale = locale;
+      });
+      log('Changed locale to $locale', name: 'flutter_ditto');
+    }
+  }
+
   @override
   State<DittoCupertinoApp> createState() => _DittoCupertinoAppState();
 }
 
 class _DittoCupertinoAppState extends State<DittoCupertinoApp> {
   final _languageCompleter = Completer<List<Locale>>();
+
+  late var _locale = widget.customDefaultLocale;
 
   @override
   void initState() {
@@ -62,45 +77,44 @@ class _DittoCupertinoAppState extends State<DittoCupertinoApp> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<List<Locale>>(
-      future: _languageCompleter.future,
-      builder: (context, snap) {
-        if (snap.connectionState != ConnectionState.done) {
-          return widget.loadingPlaceholder ??
-              const Center(child: CircularProgressIndicator());
-        }
+  Widget build(BuildContext context) => FutureBuilder<List<Locale>>(
+        future: _languageCompleter.future,
+        builder: (context, snap) {
+          if (snap.connectionState != ConnectionState.done) {
+            return widget.loadingPlaceholder ??
+                const Center(child: CircularProgressIndicator());
+          }
 
-        return CupertinoApp(
-          localizationsDelegates: [
-            DittoLocalizationsDelegate(),
-            ...defaultDelegates,
-          ],
-          builder: widget.builder,
-          title: widget.title,
-          locale: widget.customDefaultLocale,
-          supportedLocales: DittoStore().supportedLocales,
-          navigatorObservers: widget.navigatorObservers,
-          theme: widget.theme,
-          initialRoute: widget.initialRoute,
-          routes: widget.routes,
-          debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
-          localeResolutionCallback: (locale, supported) {
-            if (widget.localeResolutionCallback != null) {
-              return widget.localeResolutionCallback?.call(locale, supported);
-            }
+          return CupertinoApp(
+            key: Key(_locale?.languageCode ?? '--'),
+            localizationsDelegates: [
+              DittoLocalizationsDelegate(),
+              ...defaultDelegates,
+            ],
+            builder: widget.builder,
+            title: widget.title,
+            locale: _locale,
+            supportedLocales: DittoStore().supportedLocales,
+            navigatorObservers: widget.navigatorObservers,
+            theme: widget.theme,
+            initialRoute: widget.initialRoute,
+            routes: widget.routes,
+            debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+            localeResolutionCallback: (locale, supported) {
+              if (widget.localeResolutionCallback != null) {
+                return widget.localeResolutionCallback?.call(locale, supported);
+              }
 
-            DittoStore().lastLocale = locale;
-            if (locale == null) return null;
-            if (supported.any((l) => l.languageCode == locale.languageCode)) {
-              return supported
-                  .firstWhere((l) => l.languageCode == locale.languageCode);
-            }
-            return widget.fallbackLocale;
-          },
-          home: widget.home,
-        );
-      },
-    );
-  }
+              DittoStore().lastLocale = locale;
+              if (locale == null) return null;
+              if (supported.any((l) => l.languageCode == locale.languageCode)) {
+                return supported
+                    .firstWhere((l) => l.languageCode == locale.languageCode);
+              }
+              return widget.fallbackLocale;
+            },
+            home: widget.home,
+          );
+        },
+      );
 }

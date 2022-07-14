@@ -8,6 +8,7 @@ export 'src/extensions/string_extension.dart';
 export 'src/store/ditto_store.dart';
 export 'src/widgets/ditto_cupertino_app.dart';
 export 'src/widgets/ditto_material_app.dart';
+export 'src/widgets/ditto_text.dart';
 
 List<LocalizationsDelegate<dynamic>> get defaultDelegates => [
       GlobalMaterialLocalizations.delegate,

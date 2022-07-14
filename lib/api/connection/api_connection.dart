@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_ditto/api/api_exports.dart';
 import 'package:flutter_ditto/api/models/models.dart';
 import 'package:flutter_ditto/src/exceptions/http_exceptions.dart';
@@ -24,7 +24,7 @@ class ApiConnection {
     if (acceptCache) {
       final data = await reloadTextData();
       if (data != null) {
-        debugPrint('Fetched ditto resources from cache');
+        log('Fetched ditto resources from cache', name: 'flutter_ditto');
         getStructuredTexts(projectId, false);
         return data;
       }
@@ -35,7 +35,7 @@ class ApiConnection {
       queryParams: {'format': 'structured'},
     );
     if (response.statusCode == 200) {
-      debugPrint('Downloaded updated ditto resources');
+      log('Downloaded updated ditto resources', name: 'flutter_ditto');
       final json = (jsonDecode(response.body) as Map<String, dynamic>);
       final newData = json.entries.map((e) {
         final data = (e.value as Map<String, dynamic>)
@@ -44,6 +44,39 @@ class ApiConnection {
       }).toList();
 
       saveTextData(newData);
+
+      return newData;
+    }
+    throw FailedFetchException(response.body);
+  }
+
+  Future<List<Text>?> getComponents(
+    String? projectId, [
+    bool acceptCache = true,
+  ]) async {
+    projectId ??= DittoConfigs().projectId;
+
+    if (acceptCache) {
+      final data = await reloadComponentData();
+      if (data != null) {
+        log('Fetched ditto resources from cache', name: 'flutter_ditto');
+        getComponents(projectId, false);
+        return data;
+      }
+    }
+
+    final response = await _provider.get('/projects/$projectId/components');
+
+    if (response.statusCode == 200) {
+      log('Downloaded updated ditto components', name: 'flutter_ditto');
+      final json = (jsonDecode(response.body) as Map<String, dynamic>);
+      final newData = json.entries.map((e) {
+        final data = (e.value as Map<String, dynamic>)
+          ..putIfAbsent('key', () => e.key);
+        return Text.fromJson(data);
+      }).toList();
+
+      saveComponentData(newData);
 
       return newData;
     }

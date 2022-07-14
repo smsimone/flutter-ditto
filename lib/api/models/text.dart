@@ -33,6 +33,8 @@ class Text with _$Text {
     @JsonKey(includeIfNull: false)
     @JsonKey(name: 'is_comp')
         bool? isComp,
+    @JsonKey(name: 'component_api_id')
+        String? componentId,
   }) = _Text;
 
   factory Text.fromJson(Map<String, dynamic> json) => _Text.fromJson(json);

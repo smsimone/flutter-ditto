@@ -13,10 +13,11 @@ class LocalizationProvider {
   Text _toText(String key) {
     final texts = DittoStore().texts;
     assert(
-      texts.any((t) => t.key == key),
-      'Text of key $key not available: ${texts.map((t) => t.key).toList()}',
+      texts.any((t) => t.key == key || t.componentId == key),
+      'The key "$key" doesn\'t exist in the texts',
     );
-    final text = texts.firstWhere((t) => t.key == key);
+
+    final text = texts.firstWhere((t) => t.key == key || t.componentId == key);
     assert(
       text.variants != null,
       'Text $key has no variants: ${text.toJson()}',

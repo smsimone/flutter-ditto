@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Text;
 import 'package:flutter_ditto/api/api_exports.dart';
 import 'package:flutter_ditto/api/connection/api_connection.dart';
@@ -34,13 +35,13 @@ class DittoStore {
   Future<List<Locale>> initialize(DittoConfigData configs) async {
     DittoConfigs(configs);
     await _getSupportedLocales();
-    final texts = await ApiConnection().getStructuredTexts(null);
+    final data = await ApiConnection().getStructuredTexts(null, !kDebugMode);
 
-    if (texts == null) {
+    if (data == null) {
       throw MissingLocalizationException(DittoConfigs().projectId);
     }
 
-    _texts = texts;
+    _texts = data;
     _initializeCompleter.complete();
     return _downloadedLocales;
   }
