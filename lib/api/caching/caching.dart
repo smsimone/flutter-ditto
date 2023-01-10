@@ -1,7 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter_cache/flutter_cache.dart';
+import 'package:flutter_ditto/api/caching/cache_manager.dart';
+import 'package:flutter_ditto/api/configs/ditto_configs.dart';
 import 'package:flutter_ditto/api/models/models.dart';
 
 const _textKey = 'ditto_text_key_cache';
@@ -11,16 +10,11 @@ Future<void> saveTextData(List<Text> data) async {
   try {
     final jsonData = data.map((e) => e.toJson()).toList();
 
-    await remember(
-      _textKey,
-      jsonEncode(
-        {'data': jsonData, 'savedAt': DateTime.now().millisecondsSinceEpoch},
-      ),
-      const Duration(minutes: 5).inSeconds,
-    ).onError((error, stackTrace) {
-      debugPrint('Failed to store data: ${error.toString()}');
-      debugPrint(stackTrace.toString());
-    });
+    DittoCacheManager.instance().store(
+      '${_textKey}_${DittoConfigs().projectId}',
+      {'data': jsonData, 'savedAt': DateTime.now().millisecondsSinceEpoch},
+      maxAge: const Duration(minutes: 5),
+    );
 
     debugPrint('Saved updated translations to cache');
   } catch (e, s) {
@@ -34,12 +28,11 @@ Future<void> saveTextData(List<Text> data) async {
 Future<List<Text>?> reloadTextData() async {
   final start = DateTime.now();
   try {
-    final data = await load(_textKey);
-    if (data is! String) {
-      return null;
-    }
+    final data = await DittoCacheManager.instance()
+        .getFile('${_textKey}_${DittoConfigs().projectId}');
+    if (data == null) return null;
 
-    return (jsonDecode(data)['data'] as List<dynamic>)
+    return (data['data'] as List<dynamic>)
         .map((t) => Text.fromJson(t))
         .toList();
   } catch (e, s) {
@@ -52,3 +45,6 @@ Future<List<Text>?> reloadTextData() async {
     );
   }
 }
+
+/// Deletes all the cache contained in [DittoCacheManager]
+Future<void> deleteCache() => DittoCacheManager.instance().deleteCache();

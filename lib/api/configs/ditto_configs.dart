@@ -49,15 +49,18 @@ class DittoConfigData {
   final String apiKey;
   final Uri baseUrl;
   final String projectId;
+  final bool forceRefreshOnReload;
 
   DittoConfigData.base({
     required this.apiKey,
     required this.projectId,
+    required this.forceRefreshOnReload,
   }) : baseUrl = Uri.parse('https://api.dittowords.com');
 
   DittoConfigData({
     required this.apiKey,
     required this.baseUrl,
     required this.projectId,
+    required this.forceRefreshOnReload,
   });
 }

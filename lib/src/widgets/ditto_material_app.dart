@@ -65,6 +65,23 @@ class _DittoMaterialAppState extends State<DittoMaterialApp> {
   }
 
   @override
+  void reassemble() {
+    super.reassemble();
+    deleteCache().then((v) {
+      if (widget.configData != null) {
+        DittoStore().initialize(widget.configData!).then((supported) {
+          if (!_languageCompleter.isCompleted) {
+            _languageCompleter.complete(supported);
+          }
+        }).onError((error, stackTrace) {
+          debugPrint('Got error while initializing Ditto SDK: $error');
+          throw Exception(error);
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Locale>>(
       future: _languageCompleter.future,
