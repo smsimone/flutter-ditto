@@ -63,6 +63,14 @@ class ApiConnection {
     throw FailedFetchException(response.body);
   }
 
+  Future<void> getComponents({
+    required String baseUrl,
+    required String apiKey,
+    required String variant,
+  }) async {
+    //TODO
+  }
+
   /// Fetches the variants enabled on Ditto
   ///
   /// throws [FailedFetchException] if the request fails
