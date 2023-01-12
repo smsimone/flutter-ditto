@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'variable.dart';
 
@@ -46,7 +46,8 @@ mixin _$Variable {
 /// @nodoc
 abstract class $VariableCopyWith<$Res> {
   factory $VariableCopyWith(Variable value, $Res Function(Variable) then) =
-      _$VariableCopyWithImpl<$Res>;
+      _$VariableCopyWithImpl<$Res, Variable>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'variable_name') String variableName,
       dynamic example,
@@ -54,33 +55,36 @@ abstract class $VariableCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$VariableCopyWithImpl<$Res> implements $VariableCopyWith<$Res> {
+class _$VariableCopyWithImpl<$Res, $Val extends Variable>
+    implements $VariableCopyWith<$Res> {
   _$VariableCopyWithImpl(this._value, this._then);
 
-  final Variable _value;
   // ignore: unused_field
-  final $Res Function(Variable) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? variableName = freezed,
+    Object? variableName = null,
     Object? example = freezed,
     Object? fallback = freezed,
   }) {
     return _then(_value.copyWith(
-      variableName: variableName == freezed
+      variableName: null == variableName
           ? _value.variableName
           : variableName // ignore: cast_nullable_to_non_nullable
               as String,
-      example: example == freezed
+      example: freezed == example
           ? _value.example
           : example // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      fallback: fallback == freezed
+      fallback: freezed == fallback
           ? _value.fallback
           : fallback // ignore: cast_nullable_to_non_nullable
               as dynamic,
-    ));
+    ) as $Val);
   }
 }
 
@@ -90,6 +94,7 @@ abstract class _$$_VariableCopyWith<$Res> implements $VariableCopyWith<$Res> {
           _$_Variable value, $Res Function(_$_Variable) then) =
       __$$_VariableCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'variable_name') String variableName,
       dynamic example,
@@ -97,31 +102,30 @@ abstract class _$$_VariableCopyWith<$Res> implements $VariableCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_VariableCopyWithImpl<$Res> extends _$VariableCopyWithImpl<$Res>
+class __$$_VariableCopyWithImpl<$Res>
+    extends _$VariableCopyWithImpl<$Res, _$_Variable>
     implements _$$_VariableCopyWith<$Res> {
   __$$_VariableCopyWithImpl(
       _$_Variable _value, $Res Function(_$_Variable) _then)
-      : super(_value, (v) => _then(v as _$_Variable));
+      : super(_value, _then);
 
-  @override
-  _$_Variable get _value => super._value as _$_Variable;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? variableName = freezed,
+    Object? variableName = null,
     Object? example = freezed,
     Object? fallback = freezed,
   }) {
     return _then(_$_Variable(
-      variableName: variableName == freezed
+      variableName: null == variableName
           ? _value.variableName
           : variableName // ignore: cast_nullable_to_non_nullable
               as String,
-      example: example == freezed
+      example: freezed == example
           ? _value.example
           : example // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      fallback: fallback == freezed
+      fallback: freezed == fallback
           ? _value.fallback
           : fallback // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -170,8 +174,8 @@ class _$_Variable implements _Variable {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Variable &&
-            const DeepCollectionEquality()
-                .equals(other.variableName, variableName) &&
+            (identical(other.variableName, variableName) ||
+                other.variableName == variableName) &&
             const DeepCollectionEquality().equals(other.example, example) &&
             const DeepCollectionEquality().equals(other.fallback, fallback));
   }
@@ -180,18 +184,21 @@ class _$_Variable implements _Variable {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(variableName),
+      variableName,
       const DeepCollectionEquality().hash(example),
       const DeepCollectionEquality().hash(fallback));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_VariableCopyWith<_$_Variable> get copyWith =>
       __$$_VariableCopyWithImpl<_$_Variable>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_VariableToJson(this);
+    return _$$_VariableToJson(
+      this,
+    );
   }
 }
 
@@ -205,7 +212,7 @@ abstract class _Variable implements Variable {
 
   @override
   @JsonKey(name: 'variable_name')
-  String get variableName => throw _privateConstructorUsedError;
+  String get variableName;
   @override
 
   /// The example value of the variable
@@ -213,7 +220,7 @@ abstract class _Variable implements Variable {
   /// Can be:
   /// - a [String]
   /// - a [num]
-  dynamic get example => throw _privateConstructorUsedError;
+  dynamic get example;
   @override
 
   /// The fallback value of the variable
@@ -221,7 +228,7 @@ abstract class _Variable implements Variable {
   /// Can be:
   /// - a [String]
   /// - a [num]
-  dynamic get fallback => throw _privateConstructorUsedError;
+  dynamic get fallback;
   @override
   @JsonKey(ignore: true)
   _$$_VariableCopyWith<_$_Variable> get copyWith =>

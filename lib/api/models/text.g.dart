@@ -18,6 +18,7 @@ _$_Text _$$_TextFromJson(Map<String, dynamic> json) => _$_Text(
       variants: variantsFromJson(json['variants'] as Map<String, dynamic>?),
       tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
       isComp: json['isComp'] as bool?,
+      componentId: json['component_api_id'] as String?,
     );
 
 Map<String, dynamic> _$$_TextToJson(_$_Text instance) {
@@ -33,10 +34,11 @@ Map<String, dynamic> _$$_TextToJson(_$_Text instance) {
   val['text'] = instance.text;
   writeNotNull('status', instance.status);
   writeNotNull('notes', instance.notes);
-  writeNotNull('variables', variablesToJson(instance.variables));
+  val['variables'] = variablesToJson(instance.variables);
   writeNotNull('plurals', instance.plurals);
   writeNotNull('variants', instance.variants);
   writeNotNull('tags', instance.tags);
   writeNotNull('isComp', instance.isComp);
+  val['component_api_id'] = instance.componentId;
   return val;
 }

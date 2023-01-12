@@ -2,8 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_ditto/api/api_exports.dart';
+import 'package:flutter_ditto/api/caching/cache_manager.dart';
+import 'package:flutter_ditto/api/exceptions/http_exception.dart';
 import 'package:flutter_ditto/api/models/models.dart';
-import 'package:flutter_ditto/src/exceptions/http_exceptions.dart';
+
+const _textsKey = 'ditto_texts';
 
 class ApiConnection {
   factory ApiConnection() => _instance;
@@ -16,22 +19,29 @@ class ApiConnection {
   ///
   /// Throws [FailedFetchException] if the request fails
   Future<List<Text>?> getStructuredTexts(
-    String? projectId, [
+    String projectId, {
+    required String apiKey,
+    required String baseUrl,
     bool acceptCache = true,
-  ]) async {
-    projectId ??= DittoConfigs().projectId;
-
+  }) async {
     if (acceptCache) {
-      final data = await reloadTextData();
+      final data = await DittoCacheManager.instance().getFile(_textsKey);
       if (data != null) {
         debugPrint('Fetched ditto resources from cache');
-        getStructuredTexts(projectId, false);
-        return data;
+        getStructuredTexts(
+          projectId,
+          apiKey: apiKey,
+          baseUrl: baseUrl,
+          acceptCache: false,
+        );
+        return (data['data'] as List).map((m) => Text.fromJson(m)).toList();
       }
     }
 
     final response = await _provider.get(
-      '/projects/$projectId',
+      baseUrl: baseUrl,
+      apiKey: apiKey,
+      path: '/projects/$projectId',
       queryParams: {'format': 'structured'},
     );
     if (response.statusCode == 200) {
@@ -43,7 +53,10 @@ class ApiConnection {
         return Text.fromJson(data);
       }).toList();
 
-      saveTextData(newData);
+      DittoCacheManager.instance().store(
+        _textsKey,
+        {'data': newData},
+      );
 
       return newData;
     }
@@ -53,8 +66,15 @@ class ApiConnection {
   /// Fetches the variants enabled on Ditto
   ///
   /// throws [FailedFetchException] if the request fails
-  Future<List<Language>> getVariants() async {
-    final response = await _provider.get('/variants');
+  Future<List<Language>> getVariants({
+    required String baseUrl,
+    required String apiKey,
+  }) async {
+    final response = await _provider.get(
+      baseUrl: baseUrl,
+      apiKey: apiKey,
+      path: '/variants',
+    );
     if (response.statusCode == 200) {
       return (jsonDecode(response.body) as List<dynamic>)
           .map((d) => Language.fromJson(d))

@@ -1,33 +1,27 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_ditto/api/api_exports.dart';
-import 'package:flutter_ditto/src/exceptions/http_exceptions.dart';
+import 'package:flutter_ditto/api/exceptions/http_exception.dart';
 import 'package:http/http.dart';
 
 class DittoProvider {
-  /// Singleton that handles ditto rest calls
-  factory DittoProvider() => _instance;
-  DittoProvider._() {
-    _client = Client();
+  String _sanitizeDomain(String baseUrl) {
+    final uri = Uri.parse(baseUrl);
+    return uri.authority;
   }
-  static final _instance = DittoProvider._();
 
-  late final Client _client;
-
-  Future<Response> get(String path, {Map<String, dynamic>? queryParams}) async {
-    if (!path.startsWith('/')) {
-      path = '/$path';
-    }
-
+  Future<Response> get({
+    required String baseUrl,
+    required String path,
+    required String apiKey,
+    Map<String, dynamic>? queryParams,
+  }) async {
     final uri = Uri.https(
-      DittoConfigs().baseUrl,
+      _sanitizeDomain(baseUrl),
       path,
       queryParams,
     );
 
-    final response = await _client.get(
-      uri,
-      headers: {'Authorization': 'token ${DittoConfigs().apiKey}'},
-    );
+    final response =
+        await Client().get(uri, headers: {'Authorization': 'token $apiKey'});
 
     if (response.statusCode != 200) {
       FlutterError.presentError(

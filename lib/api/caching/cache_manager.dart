@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
-const _dittoCacheKey = 'ditto_cache';
+const _textKey = 'ditto_text_key_cache';
 
 class DittoCacheManager {
   static final DittoCacheManager _instance = DittoCacheManager._();
@@ -11,7 +11,7 @@ class DittoCacheManager {
   factory DittoCacheManager.instance() => _instance;
 
   /// The manager that holds the cache for Ditto
-  final _manager = CacheManager(Config(_dittoCacheKey));
+  final _manager = CacheManager(Config(_textKey));
 
   /// Stores the data contained in [json] under the [key] specified
   ///

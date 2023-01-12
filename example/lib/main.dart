@@ -1,22 +1,22 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ditto/api/api_exports.dart';
+import 'package:flutter_ditto/api/configs/config_data.dart';
 import 'package:flutter_ditto/flutter_ditto.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await DittoStore().initialize(
-    DittoConfigData.base(
-      projectId: '62b9f3cb14890aa237c7f88c',
-      apiKey:
-          '239221cf-2eb8-4828-976c-efe82be1b858.11fce301ca4d6f0e1ee3b2f9c4266ce416d0bfc5',
-      forceRefreshOnReload: true,
+  runApp(
+    InheritedDitto(
+      config: DittoConfigData(
+        projectId: '<YOUR-PROJECT-ID>',
+        apiKey: '<YOUR-API-KEY>',
+        forceRefreshOnReload: true,
+      ),
+      loadingWidget: const Center(child: CircularProgressIndicator()),
+      child: const MyApp(),
     ),
   );
-
-  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -29,16 +29,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return DittoMaterialApp(
+    return MaterialApp(
       title: 'Ditto test',
-      fallbackLocale: const Locale('en'),
+      localizationsDelegates: [
+        InheritedDitto.of(context).localizationsDelegate,
+        ...defaultDelegates,
+      ],
       home: const MyHomePage(),
-      loadingPlaceholder: Container(
-        color: Theme.of(context).primaryColor,
-        child: const Center(
-          child: CircularProgressIndicator(color: Colors.white),
-        ),
-      ),
     );
   }
 }
@@ -58,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('appbar_title'.translate()),
+        title: Text('appbar_title'.translate(context)),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -67,13 +64,13 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             TextField(
               decoration: InputDecoration(
-                hintText: 'hint_email'.translate(),
+                hintText: 'hint_email'.translate(context),
               ),
               onChanged: (value) => _emailNotifier.value = value,
             ),
             TextField(
               decoration: InputDecoration(
-                hintText: 'hint_password'.translate(),
+                hintText: 'hint_password'.translate(context),
               ),
             ),
             ValueListenableBuilder<String?>(
@@ -84,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.only(top: 20),
                   child: Text(
                     'text_inserted_email'
-                        .translate(variables: {'email': snap ?? '-'}),
+                        .translate(context, variables: {'email': snap ?? '-'}),
                   ),
                 ),
               ),
@@ -110,7 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
               valueListenable: _clickedNotifier,
               builder: (context, data, _) => Text(
                 'text_clicked'.translate(
-                  variables: {'count': null},
+                  context,
+                  variables: {'count': data.toString()},
                   count: data,
                 ),
               ),
@@ -119,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () {},
               child: Text(
-                'btn_login'.translate(),
+                'btn_login'.translate(context),
               ),
             ),
           ],
