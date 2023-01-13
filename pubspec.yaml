@@ -1,6 +1,6 @@
 name: flutter_ditto
 description: Simple library to interact with Ditto and retrieve remote localizations.
-version: 0.0.3+1
+version: 0.0.4+1
 homepage: https://github.com/smsimone/flutter-ditto.git
 
 environment:
