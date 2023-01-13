@@ -7,7 +7,7 @@ part of 'text.dart';
 // **************************************************************************
 
 _$_Text _$$_TextFromJson(Map<String, dynamic> json) => _$_Text(
-      key: json['key'] as String?,
+      key: json['api_id'] as String?,
       text: json['text'] as String,
       status: json['status'] as String?,
       notes: json['notes'] as String?,
@@ -30,7 +30,7 @@ Map<String, dynamic> _$$_TextToJson(_$_Text instance) {
     }
   }
 
-  writeNotNull('key', instance.key);
+  writeNotNull('api_id', instance.key);
   val['text'] = instance.text;
   writeNotNull('status', instance.status);
   writeNotNull('notes', instance.notes);

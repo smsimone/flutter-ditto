@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DittoConfigData {
   String get apiKey => throw _privateConstructorUsedError;
   String get projectId => throw _privateConstructorUsedError;
-  bool get forceRefreshOnReload => throw _privateConstructorUsedError;
   @Assert("Uri.tryParse(baseUrl) != null")
   String get baseUrl => throw _privateConstructorUsedError;
 
@@ -36,7 +35,6 @@ abstract class $DittoConfigDataCopyWith<$Res> {
   $Res call(
       {String apiKey,
       String projectId,
-      bool forceRefreshOnReload,
       @Assert("Uri.tryParse(baseUrl) != null") String baseUrl});
 }
 
@@ -55,7 +53,6 @@ class _$DittoConfigDataCopyWithImpl<$Res, $Val extends DittoConfigData>
   $Res call({
     Object? apiKey = null,
     Object? projectId = null,
-    Object? forceRefreshOnReload = null,
     Object? baseUrl = null,
   }) {
     return _then(_value.copyWith(
@@ -67,10 +64,6 @@ class _$DittoConfigDataCopyWithImpl<$Res, $Val extends DittoConfigData>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as String,
-      forceRefreshOnReload: null == forceRefreshOnReload
-          ? _value.forceRefreshOnReload
-          : forceRefreshOnReload // ignore: cast_nullable_to_non_nullable
-              as bool,
       baseUrl: null == baseUrl
           ? _value.baseUrl
           : baseUrl // ignore: cast_nullable_to_non_nullable
@@ -90,7 +83,6 @@ abstract class _$$_DittoConfigDataCopyWith<$Res>
   $Res call(
       {String apiKey,
       String projectId,
-      bool forceRefreshOnReload,
       @Assert("Uri.tryParse(baseUrl) != null") String baseUrl});
 }
 
@@ -107,7 +99,6 @@ class __$$_DittoConfigDataCopyWithImpl<$Res>
   $Res call({
     Object? apiKey = null,
     Object? projectId = null,
-    Object? forceRefreshOnReload = null,
     Object? baseUrl = null,
   }) {
     return _then(_$_DittoConfigData(
@@ -119,10 +110,6 @@ class __$$_DittoConfigDataCopyWithImpl<$Res>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as String,
-      forceRefreshOnReload: null == forceRefreshOnReload
-          ? _value.forceRefreshOnReload
-          : forceRefreshOnReload // ignore: cast_nullable_to_non_nullable
-              as bool,
       baseUrl: null == baseUrl
           ? _value.baseUrl
           : baseUrl // ignore: cast_nullable_to_non_nullable
@@ -137,7 +124,6 @@ class _$_DittoConfigData implements _DittoConfigData {
   _$_DittoConfigData(
       {required this.apiKey,
       required this.projectId,
-      this.forceRefreshOnReload = true,
       @Assert("Uri.tryParse(baseUrl) != null")
           this.baseUrl = 'https://api.dittowords.com'});
 
@@ -147,15 +133,12 @@ class _$_DittoConfigData implements _DittoConfigData {
   final String projectId;
   @override
   @JsonKey()
-  final bool forceRefreshOnReload;
-  @override
-  @JsonKey()
   @Assert("Uri.tryParse(baseUrl) != null")
   final String baseUrl;
 
   @override
   String toString() {
-    return 'DittoConfigData(apiKey: $apiKey, projectId: $projectId, forceRefreshOnReload: $forceRefreshOnReload, baseUrl: $baseUrl)';
+    return 'DittoConfigData(apiKey: $apiKey, projectId: $projectId, baseUrl: $baseUrl)';
   }
 
   @override
@@ -166,14 +149,11 @@ class _$_DittoConfigData implements _DittoConfigData {
             (identical(other.apiKey, apiKey) || other.apiKey == apiKey) &&
             (identical(other.projectId, projectId) ||
                 other.projectId == projectId) &&
-            (identical(other.forceRefreshOnReload, forceRefreshOnReload) ||
-                other.forceRefreshOnReload == forceRefreshOnReload) &&
             (identical(other.baseUrl, baseUrl) || other.baseUrl == baseUrl));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, apiKey, projectId, forceRefreshOnReload, baseUrl);
+  int get hashCode => Object.hash(runtimeType, apiKey, projectId, baseUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -186,7 +166,6 @@ abstract class _DittoConfigData implements DittoConfigData {
   factory _DittoConfigData(
           {required final String apiKey,
           required final String projectId,
-          final bool forceRefreshOnReload,
           @Assert("Uri.tryParse(baseUrl) != null") final String baseUrl}) =
       _$_DittoConfigData;
 
@@ -194,8 +173,6 @@ abstract class _DittoConfigData implements DittoConfigData {
   String get apiKey;
   @override
   String get projectId;
-  @override
-  bool get forceRefreshOnReload;
   @override
   @Assert("Uri.tryParse(baseUrl) != null")
   String get baseUrl;

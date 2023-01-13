@@ -9,7 +9,6 @@ class DittoConfigData with _$DittoConfigData {
   factory DittoConfigData({
     required String apiKey,
     required String projectId,
-    @Default(true) bool forceRefreshOnReload,
     @Assert("Uri.tryParse(baseUrl) != null")
     @Default('https://api.dittowords.com')
         String baseUrl,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart' hide Text;
 import 'package:flutter_ditto/api/models/models.dart';
 
@@ -5,7 +7,9 @@ import 'package:flutter_ditto/api/models/models.dart';
 final _variableRegexp = RegExp(r'\{\{(.*?)\}\}');
 
 class LocalizationProvider {
-  LocalizationProvider(this._currentLocale, this._texts);
+  LocalizationProvider(this._currentLocale, this._texts) {
+    log('Initialized LocalizationProvider with language $_currentLocale');
+  }
   final Locale _currentLocale;
   final List<Text> _texts;
 

@@ -6,7 +6,6 @@ class InheritedDitto extends InheritedWidget {
   const InheritedDitto._({
     required super.child,
     required Ditto ditto,
-    this.defaultLocale,
   }) : _ditto = ditto;
 
   factory InheritedDitto({
@@ -23,7 +22,6 @@ class InheritedDitto extends InheritedWidget {
         onlyNetworkLabels: onlyNetworkLabels,
       );
     return InheritedDitto._(
-      defaultLocale: defaultLocale,
       ditto: ditto,
       child: FutureBuilder<void>(
         future: ditto.isInitialized,
@@ -52,10 +50,8 @@ class InheritedDitto extends InheritedWidget {
     return temp!._ditto;
   }
 
-  final Locale? defaultLocale;
   final Ditto _ditto;
 
   @override
-  bool updateShouldNotify(covariant InheritedDitto oldWidget) =>
-      defaultLocale != oldWidget.defaultLocale;
+  bool updateShouldNotify(covariant InheritedDitto oldWidget) => false;
 }

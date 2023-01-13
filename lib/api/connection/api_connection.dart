@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_ditto/api/api_exports.dart';
 import 'package:flutter_ditto/api/caching/cache_manager.dart';
 import 'package:flutter_ditto/api/exceptions/http_exception.dart';
@@ -27,7 +27,7 @@ class ApiConnection {
     if (acceptCache) {
       final data = await DittoCacheManager.instance().getFile(_textsKey);
       if (data != null) {
-        debugPrint('Fetched ditto resources from cache');
+        log('Fetched ditto resources from cache', name: 'flutter_ditto');
         getStructuredTexts(
           projectId,
           apiKey: apiKey,
@@ -45,30 +45,20 @@ class ApiConnection {
       queryParams: {'format': 'structured'},
     );
     if (response.statusCode == 200) {
-      debugPrint('Downloaded updated ditto resources');
+      log('Downloaded updated ditto resources', name: 'flutter_ditto');
       final json = (jsonDecode(response.body) as Map<String, dynamic>);
-      final newData = json.entries.map((e) {
-        final data = (e.value as Map<String, dynamic>)
-          ..putIfAbsent('key', () => e.key);
-        return Text.fromJson(data);
-      }).toList();
+      final newData = json.entries
+          .map(
+            (e) => Text.fromJson((e.value as Map<String, dynamic>)
+              ..putIfAbsent('key', () => e.key)),
+          )
+          .toList();
 
-      DittoCacheManager.instance().store(
-        _textsKey,
-        {'data': newData},
-      );
+      DittoCacheManager.instance().store(_textsKey, {'data': newData});
 
       return newData;
     }
     throw FailedFetchException(response.body);
-  }
-
-  Future<void> getComponents({
-    required String baseUrl,
-    required String apiKey,
-    required String variant,
-  }) async {
-    //TODO
   }
 
   /// Fetches the variants enabled on Ditto

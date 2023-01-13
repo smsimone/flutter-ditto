@@ -9,10 +9,12 @@ Future<void> main() async {
   runApp(
     InheritedDitto(
       config: DittoConfigData(
-        projectId: '<YOUR-PROJECT-ID>',
-        apiKey: '<YOUR-API-KEY>',
-        forceRefreshOnReload: true,
+        projectId: '62b9f3cb14890aa237c7f88c',
+        apiKey:
+            'd9e4a619-4707-41d5-a595-f19afb88f47d.f641b92a43bca385351bfed2a77fa36f810c96c7',
       ),
+      onlyNetworkLabels: true,
+      defaultLocale: const Locale('it'),
       loadingWidget: const Center(child: CircularProgressIndicator()),
       child: const MyApp(),
     ),
@@ -70,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextField(
               decoration: InputDecoration(
-                hintText: 'hint_password'.translate(context),
+                hintText: 'text.hint.password'.translate(context),
               ),
             ),
             ValueListenableBuilder<String?>(
@@ -116,9 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {},
-              child: Text(
-                'btn_login'.translate(context),
-              ),
+              child: Text('button.login'.translate(context)),
             ),
           ],
         ),

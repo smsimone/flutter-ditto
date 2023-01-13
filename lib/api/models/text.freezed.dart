@@ -23,7 +23,7 @@ mixin _$Text {
   /// Viene valorizzato solo se è una chiave di primo livello
   ///
   /// Per le varianti è nullo
-  @JsonKey(name: 'key', includeIfNull: false)
+  @JsonKey(name: 'api_id', includeIfNull: false)
   String? get key => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
@@ -58,7 +58,7 @@ abstract class $TextCopyWith<$Res> {
       _$TextCopyWithImpl<$Res, Text>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'key', includeIfNull: false)
+      {@JsonKey(name: 'api_id', includeIfNull: false)
           String? key,
       String text,
       @JsonKey(includeIfNull: false)
@@ -170,7 +170,7 @@ abstract class _$$_TextCopyWith<$Res> implements $TextCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'key', includeIfNull: false)
+      {@JsonKey(name: 'api_id', includeIfNull: false)
           String? key,
       String text,
       @JsonKey(includeIfNull: false)
@@ -264,7 +264,7 @@ class __$$_TextCopyWithImpl<$Res> extends _$TextCopyWithImpl<$Res, _$_Text>
 @JsonSerializable()
 class _$_Text extends _Text {
   const _$_Text(
-      {@JsonKey(name: 'key', includeIfNull: false)
+      {@JsonKey(name: 'api_id', includeIfNull: false)
           this.key,
       required this.text,
       @JsonKey(includeIfNull: false)
@@ -295,7 +295,7 @@ class _$_Text extends _Text {
   ///
   /// Per le varianti è nullo
   @override
-  @JsonKey(name: 'key', includeIfNull: false)
+  @JsonKey(name: 'api_id', includeIfNull: false)
   final String? key;
   @override
   final String text;
@@ -407,7 +407,7 @@ class _$_Text extends _Text {
 
 abstract class _Text extends Text {
   const factory _Text(
-      {@JsonKey(name: 'key', includeIfNull: false)
+      {@JsonKey(name: 'api_id', includeIfNull: false)
           final String? key,
       required final String text,
       @JsonKey(includeIfNull: false)
@@ -436,7 +436,7 @@ abstract class _Text extends Text {
   /// Viene valorizzato solo se è una chiave di primo livello
   ///
   /// Per le varianti è nullo
-  @JsonKey(name: 'key', includeIfNull: false)
+  @JsonKey(name: 'api_id', includeIfNull: false)
   String? get key;
   @override
   String get text;

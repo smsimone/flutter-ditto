@@ -18,7 +18,6 @@ class Ditto {
   final _texts = <Text>[];
 
   final _initializationCompleter = Completer<void>();
-  late final ValueNotifier<Locale> _currentLocale;
   late final ValueNotifier<DittoLocalizationsDelegate> _delegate;
 
   DittoLocalizationsDelegate get localizationsDelegate {
@@ -41,6 +40,9 @@ class Ditto {
   /// Returns a [Future] that completes when [Ditto] is successfully initialized
   Future<void> get isInitialized => _initializationCompleter.future;
 
+  /// [defaultLocale] forces [Ditto] to set the current [Locale] to the given
+  /// one. If there's no preferred [Locale], the device's one will be
+  /// chosen
   Future<void> initialize({
     Locale? defaultLocale,
     bool onlyNetworkLabels = true,
@@ -50,7 +52,7 @@ class Ditto {
       "Ditto has already been initialized",
     );
     final results = await Future.wait([
-      _getVariants(defaultLocale: defaultLocale),
+      _getVariants(),
       _getTexts(onlyNetworkLabels: onlyNetworkLabels),
     ]).onError((error, stackTrace) {
       _initializationCompleter.completeError(
@@ -66,7 +68,25 @@ class Ditto {
     });
     if (results.isEmpty) return;
 
-    _delegate = ValueNotifier(DittoLocalizationsDelegate(_locales, _texts));
+    Locale? forcedLocale;
+
+    if (!_locales.contains(defaultLocale)) {
+      log(
+        'Requested default locale $defaultLocale, is not present in Ditto variants. Available locales are: $_locales',
+        name: 'flutter_ditto',
+        level: 1000,
+      );
+    } else {
+      forcedLocale = defaultLocale;
+    }
+
+    _delegate = ValueNotifier(
+      DittoLocalizationsDelegate(
+        _locales,
+        _texts,
+        defaultLocale: forcedLocale,
+      ),
+    );
     _initializationCompleter.complete();
     log('Initialized Ditto instance', name: 'flutter_ditto');
   }
@@ -87,9 +107,7 @@ class Ditto {
   }
 
   /// Get the available variants inside the Ditto project
-  Future<void> _getVariants({
-    Locale? defaultLocale,
-  }) async {
+  Future<void> _getVariants() async {
     final variants = await _conn.getVariants(
       baseUrl: configs.baseUrl,
       apiKey: configs.apiKey,
@@ -100,14 +118,5 @@ class Ditto {
     }
 
     _locales.addAll(variants.map((v) => Locale(v.apiId)));
-    if (defaultLocale == null) {
-      _currentLocale = ValueNotifier(_locales.first);
-    } else {
-      assert(
-        _locales.contains(defaultLocale),
-        'Requested default locale $defaultLocale, is not present in Ditto variants. Available locales are: $_locales',
-      );
-      _currentLocale.value = defaultLocale;
-    }
   }
 }

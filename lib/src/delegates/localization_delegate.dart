@@ -6,10 +6,16 @@ import 'package:flutter_ditto/src/delegates/localization_provider.dart';
 
 class DittoLocalizationsDelegate
     extends LocalizationsDelegate<LocalizationProvider> {
-  DittoLocalizationsDelegate(this._supportedLocales, this._texts);
+  DittoLocalizationsDelegate(
+    this._supportedLocales,
+    this._texts, {
+    this.defaultLocale,
+  });
 
   final List<Locale> _supportedLocales;
   final List<Text> _texts;
+  final Locale? defaultLocale;
+
   var _initialized = false;
   late final LocalizationProvider _provider;
 
@@ -29,7 +35,9 @@ class DittoLocalizationsDelegate
   @override
   Future<LocalizationProvider> load(Locale locale) {
     _initialized = true;
-    return Future.sync(() => _provider = LocalizationProvider(locale, _texts));
+    return Future.sync(
+      () => _provider = LocalizationProvider(defaultLocale ?? locale, _texts),
+    );
   }
 
   @override
