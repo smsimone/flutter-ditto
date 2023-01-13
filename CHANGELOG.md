@@ -1,9 +1,9 @@
-## Unreleased
+## v0.0.3+1 (2023-01-13)
 
 ### Feat
 
 - added component support and edited main widget
-- made Ditto as an inherited widget to make it more mainteinable
+- **Breaking**: made Ditto as an inherited widget to make it more mainteinable
 
 ### Perf
 
