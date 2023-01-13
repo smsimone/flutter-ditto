@@ -1,18 +1,23 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_ditto/api/api_exports.dart';
+import 'package:flutter_ditto/api/configs/config_data.dart';
 import 'package:flutter_ditto/flutter_ditto.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await DittoStore().initialize(
-    DittoConfigData.base(
-      projectId: '<YOUR-PROJECT-ID>',
-      apiKey: '<YOUR-API-KEY>',
+  runApp(
+    InheritedDitto(
+      config: DittoConfigData(
+        projectId: '<YOUR-PROJECT-ID>',
+        apiKey: '<YOUR-API-KEY>',
+      ),
+      onlyNetworkLabels: true,
+      defaultLocale: const Locale('it'),
+      loadingWidget: const Center(child: CircularProgressIndicator()),
+      child: const MyApp(),
     ),
   );
-
-  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -25,16 +30,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return DittoMaterialApp(
+    return MaterialApp(
       title: 'Ditto test',
-      fallbackLocale: const Locale('en'),
+      localizationsDelegates: [
+        InheritedDitto.of(context).localizationsDelegate,
+        ...defaultDelegates,
+      ],
       home: const MyHomePage(),
-      loadingPlaceholder: Container(
-        color: Theme.of(context).primaryColor,
-        child: const Center(
-          child: CircularProgressIndicator(color: Colors.white),
-        ),
-      ),
     );
   }
 }
@@ -47,42 +49,76 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final _emailNotifier = ValueNotifier<String?>(null);
   final _clickedNotifier = ValueNotifier<int>(0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('pages.homepage.title'.translate()),
+        title: Text('appbar_title'.translate(context)),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _clickedNotifier.value += 1,
-        child: const Icon(Icons.add),
-      ),
-      body: SizedBox.expand(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
-              flex: 2,
-              child: Center(
-                child: Text('pages.homepage.subtitle'.translate()),
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'hint_email'.translate(context),
+              ),
+              onChanged: (value) => _emailNotifier.value = value,
+            ),
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'text.hint.password'.translate(context),
               ),
             ),
-            Expanded(
-              flex: 3,
-              child: Center(
-                child: ValueListenableBuilder<int>(
-                  valueListenable: _clickedNotifier,
-                  builder: (context, value, _) => Text(
-                    'pages.homepage.body.counter'.translate(
-                      count: value,
-                    ),
+            ValueListenableBuilder<String?>(
+              valueListenable: _emailNotifier,
+              builder: (context, snap, _) => Visibility(
+                visible: snap != null && snap.isNotEmpty,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    'text_inserted_email'
+                        .translate(context, variables: {'email': snap ?? '-'}),
                   ),
                 ),
               ),
-            )
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () =>
+                      _clickedNotifier.value = _clickedNotifier.value + 1,
+                  child: const Text('+'),
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () => _clickedNotifier.value =
+                      max(0, _clickedNotifier.value - 1),
+                  child: const Text('-'),
+                ),
+              ],
+            ),
+            ValueListenableBuilder<int>(
+              valueListenable: _clickedNotifier,
+              builder: (context, data, _) => Text(
+                'text_clicked'.translate(
+                  context,
+                  variables: {'count': data.toString()},
+                  count: data,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text('button.login'.translate(context)),
+            ),
           ],
         ),
       ),

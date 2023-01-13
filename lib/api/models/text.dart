@@ -11,7 +11,7 @@ class Text with _$Text {
     /// Viene valorizzato solo se è una chiave di primo livello
     ///
     /// Per le varianti è nullo
-    @JsonKey(name: 'key', includeIfNull: false)
+    @JsonKey(name: 'api_id', includeIfNull: false)
         String? key,
     required String text,
     @JsonKey(includeIfNull: false)

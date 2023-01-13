@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'text.dart';
 
@@ -23,7 +23,7 @@ mixin _$Text {
   /// Viene valorizzato solo se è una chiave di primo livello
   ///
   /// Per le varianti è nullo
-  @JsonKey(name: 'key', includeIfNull: false)
+  @JsonKey(name: 'api_id', includeIfNull: false)
   String? get key => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
@@ -55,9 +55,10 @@ mixin _$Text {
 /// @nodoc
 abstract class $TextCopyWith<$Res> {
   factory $TextCopyWith(Text value, $Res Function(Text) then) =
-      _$TextCopyWithImpl<$Res>;
+      _$TextCopyWithImpl<$Res, Text>;
+  @useResult
   $Res call(
-      {@JsonKey(name: 'key', includeIfNull: false)
+      {@JsonKey(name: 'api_id', includeIfNull: false)
           String? key,
       String text,
       @JsonKey(includeIfNull: false)
@@ -82,17 +83,20 @@ abstract class $TextCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TextCopyWithImpl<$Res> implements $TextCopyWith<$Res> {
+class _$TextCopyWithImpl<$Res, $Val extends Text>
+    implements $TextCopyWith<$Res> {
   _$TextCopyWithImpl(this._value, this._then);
 
-  final Text _value;
   // ignore: unused_field
-  final $Res Function(Text) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = freezed,
-    Object? text = freezed,
+    Object? text = null,
     Object? status = freezed,
     Object? notes = freezed,
     Object? variables = freezed,
@@ -103,57 +107,58 @@ class _$TextCopyWithImpl<$Res> implements $TextCopyWith<$Res> {
     Object? componentId = freezed,
   }) {
     return _then(_value.copyWith(
-      key: key == freezed
+      key: freezed == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String?,
-      text: text == freezed
+      text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
-      notes: notes == freezed
+      notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      variables: variables == freezed
+      variables: freezed == variables
           ? _value.variables
           : variables // ignore: cast_nullable_to_non_nullable
               as List<Variable>?,
-      plurals: plurals == freezed
+      plurals: freezed == plurals
           ? _value.plurals
           : plurals // ignore: cast_nullable_to_non_nullable
               as Plurals?,
-      variants: variants == freezed
+      variants: freezed == variants
           ? _value.variants
           : variants // ignore: cast_nullable_to_non_nullable
               as Map<String, Text>?,
-      tags: tags == freezed
+      tags: freezed == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      isComp: isComp == freezed
+      isComp: freezed == isComp
           ? _value.isComp
           : isComp // ignore: cast_nullable_to_non_nullable
               as bool?,
-      componentId: componentId == freezed
+      componentId: freezed == componentId
           ? _value.componentId
           : componentId // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PluralsCopyWith<$Res>? get plurals {
     if (_value.plurals == null) {
       return null;
     }
 
     return $PluralsCopyWith<$Res>(_value.plurals!, (value) {
-      return _then(_value.copyWith(plurals: value));
+      return _then(_value.copyWith(plurals: value) as $Val);
     });
   }
 }
@@ -163,8 +168,9 @@ abstract class _$$_TextCopyWith<$Res> implements $TextCopyWith<$Res> {
   factory _$$_TextCopyWith(_$_Text value, $Res Function(_$_Text) then) =
       __$$_TextCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
-      {@JsonKey(name: 'key', includeIfNull: false)
+      {@JsonKey(name: 'api_id', includeIfNull: false)
           String? key,
       String text,
       @JsonKey(includeIfNull: false)
@@ -190,18 +196,16 @@ abstract class _$$_TextCopyWith<$Res> implements $TextCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TextCopyWithImpl<$Res> extends _$TextCopyWithImpl<$Res>
+class __$$_TextCopyWithImpl<$Res> extends _$TextCopyWithImpl<$Res, _$_Text>
     implements _$$_TextCopyWith<$Res> {
   __$$_TextCopyWithImpl(_$_Text _value, $Res Function(_$_Text) _then)
-      : super(_value, (v) => _then(v as _$_Text));
+      : super(_value, _then);
 
-  @override
-  _$_Text get _value => super._value as _$_Text;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? key = freezed,
-    Object? text = freezed,
+    Object? text = null,
     Object? status = freezed,
     Object? notes = freezed,
     Object? variables = freezed,
@@ -212,43 +216,43 @@ class __$$_TextCopyWithImpl<$Res> extends _$TextCopyWithImpl<$Res>
     Object? componentId = freezed,
   }) {
     return _then(_$_Text(
-      key: key == freezed
+      key: freezed == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String?,
-      text: text == freezed
+      text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
-      notes: notes == freezed
+      notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      variables: variables == freezed
+      variables: freezed == variables
           ? _value._variables
           : variables // ignore: cast_nullable_to_non_nullable
               as List<Variable>?,
-      plurals: plurals == freezed
+      plurals: freezed == plurals
           ? _value.plurals
           : plurals // ignore: cast_nullable_to_non_nullable
               as Plurals?,
-      variants: variants == freezed
+      variants: freezed == variants
           ? _value._variants
           : variants // ignore: cast_nullable_to_non_nullable
               as Map<String, Text>?,
-      tags: tags == freezed
+      tags: freezed == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      isComp: isComp == freezed
+      isComp: freezed == isComp
           ? _value.isComp
           : isComp // ignore: cast_nullable_to_non_nullable
               as bool?,
-      componentId: componentId == freezed
+      componentId: freezed == componentId
           ? _value.componentId
           : componentId // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -260,7 +264,7 @@ class __$$_TextCopyWithImpl<$Res> extends _$TextCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Text extends _Text {
   const _$_Text(
-      {@JsonKey(name: 'key', includeIfNull: false)
+      {@JsonKey(name: 'api_id', includeIfNull: false)
           this.key,
       required this.text,
       @JsonKey(includeIfNull: false)
@@ -291,7 +295,7 @@ class _$_Text extends _Text {
   ///
   /// Per le varianti è nullo
   @override
-  @JsonKey(name: 'key', includeIfNull: false)
+  @JsonKey(name: 'api_id', includeIfNull: false)
   final String? key;
   @override
   final String text;
@@ -310,6 +314,7 @@ class _$_Text extends _Text {
   List<Variable>? get variables {
     final value = _variables;
     if (value == null) return null;
+    if (_variables is EqualUnmodifiableListView) return _variables;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -323,6 +328,7 @@ class _$_Text extends _Text {
   Map<String, Text>? get variants {
     final value = _variants;
     if (value == null) return null;
+    if (_variants is EqualUnmodifiableMapView) return _variants;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(value);
   }
@@ -333,6 +339,7 @@ class _$_Text extends _Text {
   List<String>? get tags {
     final value = _tags;
     if (value == null) return null;
+    if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -355,49 +362,52 @@ class _$_Text extends _Text {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Text &&
-            const DeepCollectionEquality().equals(other.key, key) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.notes, notes) &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
             const DeepCollectionEquality()
                 .equals(other._variables, _variables) &&
-            const DeepCollectionEquality().equals(other.plurals, plurals) &&
+            (identical(other.plurals, plurals) || other.plurals == plurals) &&
             const DeepCollectionEquality().equals(other._variants, _variants) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
-            const DeepCollectionEquality().equals(other.isComp, isComp) &&
-            const DeepCollectionEquality()
-                .equals(other.componentId, componentId));
+            (identical(other.isComp, isComp) || other.isComp == isComp) &&
+            (identical(other.componentId, componentId) ||
+                other.componentId == componentId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(key),
-      const DeepCollectionEquality().hash(text),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(notes),
+      key,
+      text,
+      status,
+      notes,
       const DeepCollectionEquality().hash(_variables),
-      const DeepCollectionEquality().hash(plurals),
+      plurals,
       const DeepCollectionEquality().hash(_variants),
       const DeepCollectionEquality().hash(_tags),
-      const DeepCollectionEquality().hash(isComp),
-      const DeepCollectionEquality().hash(componentId));
+      isComp,
+      componentId);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TextCopyWith<_$_Text> get copyWith =>
       __$$_TextCopyWithImpl<_$_Text>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TextToJson(this);
+    return _$$_TextToJson(
+      this,
+    );
   }
 }
 
 abstract class _Text extends Text {
   const factory _Text(
-      {@JsonKey(name: 'key', includeIfNull: false)
+      {@JsonKey(name: 'api_id', includeIfNull: false)
           final String? key,
       required final String text,
       @JsonKey(includeIfNull: false)
@@ -426,35 +436,38 @@ abstract class _Text extends Text {
   /// Viene valorizzato solo se è una chiave di primo livello
   ///
   /// Per le varianti è nullo
-  @JsonKey(name: 'key', includeIfNull: false)
-  String? get key => throw _privateConstructorUsedError;
+  @JsonKey(name: 'api_id', includeIfNull: false)
+  String? get key;
   @override
-  String get text => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(includeIfNull: false)
-  String? get status => throw _privateConstructorUsedError;
+  String get text;
   @override
   @JsonKey(includeIfNull: false)
-  String? get notes => throw _privateConstructorUsedError;
+  String? get status;
+  @override
+  @JsonKey(includeIfNull: false)
+  String? get notes;
   @override
   @JsonKey(
       includeIfNull: false,
       fromJson: variablesFromJson,
       toJson: variablesToJson)
-  List<Variable>? get variables => throw _privateConstructorUsedError;
+  List<Variable>? get variables;
   @override
   @JsonKey(includeIfNull: false)
-  Plurals? get plurals => throw _privateConstructorUsedError;
+  Plurals? get plurals;
   @override
   @JsonKey(fromJson: variantsFromJson, includeIfNull: false)
-  Map<String, Text>? get variants => throw _privateConstructorUsedError;
+  Map<String, Text>? get variants;
   @override
   @JsonKey(includeIfNull: false)
-  List<String>? get tags => throw _privateConstructorUsedError;
+  List<String>? get tags;
   @override
   @JsonKey(includeIfNull: false)
   @JsonKey(name: 'is_comp')
-  bool? get isComp => throw _privateConstructorUsedError;
+  bool? get isComp;
+  @override
+  @JsonKey(name: 'component_api_id')
+  String? get componentId;
   @override
   @JsonKey(name: 'component_api_id')
   String? get componentId => throw _privateConstructorUsedError;

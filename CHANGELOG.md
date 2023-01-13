@@ -1,7 +1,5 @@
 ## 0.0.3+1
-
-- Now you can translate texts by using the `id` field or the `component_api_id` field, if it's a component
-- You can change the app's locale by calling `DittoMaterialApp.setLocale()` or `DittoCupertinoApp.setLocale()`
+* Added support to other platforms by removing `path_provider` package
 
 ## 0.0.2+1
 

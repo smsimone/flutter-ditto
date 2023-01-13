@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'plurals.dart';
 
@@ -35,7 +35,8 @@ mixin _$Plurals {
 /// @nodoc
 abstract class $PluralsCopyWith<$Res> {
   factory $PluralsCopyWith(Plurals value, $Res Function(Plurals) then) =
-      _$PluralsCopyWithImpl<$Res>;
+      _$PluralsCopyWithImpl<$Res, Plurals>;
+  @useResult
   $Res call(
       {String? zero,
       String? one,
@@ -46,13 +47,16 @@ abstract class $PluralsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PluralsCopyWithImpl<$Res> implements $PluralsCopyWith<$Res> {
+class _$PluralsCopyWithImpl<$Res, $Val extends Plurals>
+    implements $PluralsCopyWith<$Res> {
   _$PluralsCopyWithImpl(this._value, this._then);
 
-  final Plurals _value;
   // ignore: unused_field
-  final $Res Function(Plurals) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? zero = freezed,
@@ -63,31 +67,31 @@ class _$PluralsCopyWithImpl<$Res> implements $PluralsCopyWith<$Res> {
     Object? other = freezed,
   }) {
     return _then(_value.copyWith(
-      zero: zero == freezed
+      zero: freezed == zero
           ? _value.zero
           : zero // ignore: cast_nullable_to_non_nullable
               as String?,
-      one: one == freezed
+      one: freezed == one
           ? _value.one
           : one // ignore: cast_nullable_to_non_nullable
               as String?,
-      two: two == freezed
+      two: freezed == two
           ? _value.two
           : two // ignore: cast_nullable_to_non_nullable
               as String?,
-      few: few == freezed
+      few: freezed == few
           ? _value.few
           : few // ignore: cast_nullable_to_non_nullable
               as String?,
-      many: many == freezed
+      many: freezed == many
           ? _value.many
           : many // ignore: cast_nullable_to_non_nullable
               as String?,
-      other: other == freezed
+      other: freezed == other
           ? _value.other
           : other // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -97,6 +101,7 @@ abstract class _$$_PluralsCopyWith<$Res> implements $PluralsCopyWith<$Res> {
           _$_Plurals value, $Res Function(_$_Plurals) then) =
       __$$_PluralsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String? zero,
       String? one,
@@ -107,14 +112,13 @@ abstract class _$$_PluralsCopyWith<$Res> implements $PluralsCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PluralsCopyWithImpl<$Res> extends _$PluralsCopyWithImpl<$Res>
+class __$$_PluralsCopyWithImpl<$Res>
+    extends _$PluralsCopyWithImpl<$Res, _$_Plurals>
     implements _$$_PluralsCopyWith<$Res> {
   __$$_PluralsCopyWithImpl(_$_Plurals _value, $Res Function(_$_Plurals) _then)
-      : super(_value, (v) => _then(v as _$_Plurals));
+      : super(_value, _then);
 
-  @override
-  _$_Plurals get _value => super._value as _$_Plurals;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? zero = freezed,
@@ -125,27 +129,27 @@ class __$$_PluralsCopyWithImpl<$Res> extends _$PluralsCopyWithImpl<$Res>
     Object? other = freezed,
   }) {
     return _then(_$_Plurals(
-      zero: zero == freezed
+      zero: freezed == zero
           ? _value.zero
           : zero // ignore: cast_nullable_to_non_nullable
               as String?,
-      one: one == freezed
+      one: freezed == one
           ? _value.one
           : one // ignore: cast_nullable_to_non_nullable
               as String?,
-      two: two == freezed
+      two: freezed == two
           ? _value.two
           : two // ignore: cast_nullable_to_non_nullable
               as String?,
-      few: few == freezed
+      few: freezed == few
           ? _value.few
           : few // ignore: cast_nullable_to_non_nullable
               as String?,
-      many: many == freezed
+      many: freezed == many
           ? _value.many
           : many // ignore: cast_nullable_to_non_nullable
               as String?,
-      other: other == freezed
+      other: freezed == other
           ? _value.other
           : other // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -186,33 +190,30 @@ class _$_Plurals extends _Plurals {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Plurals &&
-            const DeepCollectionEquality().equals(other.zero, zero) &&
-            const DeepCollectionEquality().equals(other.one, one) &&
-            const DeepCollectionEquality().equals(other.two, two) &&
-            const DeepCollectionEquality().equals(other.few, few) &&
-            const DeepCollectionEquality().equals(other.many, many) &&
-            const DeepCollectionEquality().equals(other.other, this.other));
+            (identical(other.zero, zero) || other.zero == zero) &&
+            (identical(other.one, one) || other.one == one) &&
+            (identical(other.two, two) || other.two == two) &&
+            (identical(other.few, few) || other.few == few) &&
+            (identical(other.many, many) || other.many == many) &&
+            (identical(other.other, this.other) || other.other == this.other));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(zero),
-      const DeepCollectionEquality().hash(one),
-      const DeepCollectionEquality().hash(two),
-      const DeepCollectionEquality().hash(few),
-      const DeepCollectionEquality().hash(many),
-      const DeepCollectionEquality().hash(other));
+  int get hashCode =>
+      Object.hash(runtimeType, zero, one, two, few, many, other);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PluralsCopyWith<_$_Plurals> get copyWith =>
       __$$_PluralsCopyWithImpl<_$_Plurals>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PluralsToJson(this);
+    return _$$_PluralsToJson(
+      this,
+    );
   }
 }
 
@@ -229,17 +230,17 @@ abstract class _Plurals extends Plurals {
   factory _Plurals.fromJson(Map<String, dynamic> json) = _$_Plurals.fromJson;
 
   @override
-  String? get zero => throw _privateConstructorUsedError;
+  String? get zero;
   @override
-  String? get one => throw _privateConstructorUsedError;
+  String? get one;
   @override
-  String? get two => throw _privateConstructorUsedError;
+  String? get two;
   @override
-  String? get few => throw _privateConstructorUsedError;
+  String? get few;
   @override
-  String? get many => throw _privateConstructorUsedError;
+  String? get many;
   @override
-  String? get other => throw _privateConstructorUsedError;
+  String? get other;
   @override
   @JsonKey(ignore: true)
   _$$_PluralsCopyWith<_$_Plurals> get copyWith =>
