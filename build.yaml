@@ -3,3 +3,4 @@ targets:
     sources:
       - $package$
       - lib/**
+      - src/**

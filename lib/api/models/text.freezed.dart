@@ -469,9 +469,6 @@ abstract class _Text extends Text {
   @JsonKey(name: 'component_api_id')
   String? get componentId;
   @override
-  @JsonKey(name: 'component_api_id')
-  String? get componentId => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   _$$_TextCopyWith<_$_Text> get copyWith => throw _privateConstructorUsedError;
 }
