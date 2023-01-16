@@ -4,8 +4,8 @@ version: 1.0.0+2
 homepage: https://github.com/smsimone/flutter-ditto.git
 
 environment:
-  sdk: ">=2.17.1 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=2.18.6 <3.0.0"
+  flutter: ">=2.5.0"
 
 dependencies:
   flutter:
@@ -25,5 +25,6 @@ dev_dependencies:
   freezed: ^2.0.3+1
   json_serializable: ^6.2.0
   dotenv: ^4.0.1
-
-flutter: null
+  custom_lint: ^0.1.2-dev
+  hardcoded_strings:
+    path: /Users/smaso/Development/toduba/hardcoded_strings

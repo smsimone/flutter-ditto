@@ -9,5 +9,6 @@ class DittoState with _$DittoState {
   const factory DittoState({
     @Default([]) List<Locale> locales,
     @Default([]) List<Text> texts,
+    @Default([]) List<String > keys,
   }) = _DittoState;
 }
