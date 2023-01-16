@@ -5,6 +5,7 @@ import 'package:flutter/material.dart' hide Text;
 import 'package:flutter_ditto/api/configs/config_data.dart';
 import 'package:flutter_ditto/api/connection/api_connection.dart';
 import 'package:flutter_ditto/api/models/text.dart';
+import 'package:flutter_ditto/src/cache/ditto_cache.dart';
 import 'package:flutter_ditto/src/delegates/localization_delegate.dart';
 
 @immutable
@@ -12,6 +13,7 @@ class Ditto {
   Ditto(this.configs);
 
   final _conn = ApiConnection();
+  final _cache = DittoCache();
   final DittoConfigData configs;
 
   final _locales = <Locale>[];
@@ -51,9 +53,12 @@ class Ditto {
       !_initializationCompleter.isCompleted,
       "Ditto has already been initialized",
     );
+
+    await _cache.initialize();
+
     final results = await Future.wait([
       _getVariants(),
-      _getTexts(onlyNetworkLabels: onlyNetworkLabels),
+      _getTexts(onlyNetworkLabels: onlyNetworkLabels).first,
     ]).onError((error, stackTrace) {
       _initializationCompleter.completeError(
         error ?? 'Failed initialization: $error',
@@ -91,7 +96,12 @@ class Ditto {
     log('Initialized Ditto instance', name: 'flutter_ditto');
   }
 
-  Future<void> _getTexts({bool onlyNetworkLabels = false}) async {
+  Stream<void> _getTexts({bool onlyNetworkLabels = false}) async* {
+    final cached = _cache.retrieveCachedTexts();
+    if (cached != null) {
+      yield cached;
+    }
+
     final data = await _conn.getStructuredTexts(
       configs.projectId,
       apiKey: configs.apiKey,
@@ -102,6 +112,8 @@ class Ditto {
     if (data == null) {
       throw Exception('Missing localizations for project ${configs.projectId}');
     }
+
+    _cache.saveTexts(data);
 
     _texts.addAll(data);
   }
