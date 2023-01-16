@@ -27,4 +27,4 @@ dev_dependencies:
   dotenv: ^4.0.1
   custom_lint: ^0.1.2-dev
   hardcoded_strings:
-    path: /Users/smaso/Development/toduba/hardcoded_strings
+    path: linter/hardcoded_strings
