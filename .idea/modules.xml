@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/projects/flutter-ditto/melos_flutter_ditto.iml" filepath="$PROJECT_DIR$/projects/flutter-ditto/melos_flutter_ditto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projects/hardcoded_strings/melos_hardcoded_strings.iml" filepath="$PROJECT_DIR$/projects/hardcoded_strings/melos_hardcoded_strings.iml" />
+      <module fileurl="file://$PROJECT_DIR$/melos_flutter_ditto.iml" filepath="$PROJECT_DIR$/melos_flutter_ditto.iml" />
+    </modules>
+  </component>
+</project>

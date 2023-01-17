@@ -1,18 +1,13 @@
 # hardcoded_strings
 
-A new Flutter plugin project.
+This is a linter built with [custom_lint](https://pub.dev/packages/custom_lint) which will find all the hardcoded strings inside your widget and the keys which are not contained inside [Ditto](https://dittowords.com).
 
-## Getting Started
+## First run
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+To get the linter run you firstly have to download your localizations with
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```shell
+flutter pub run hardcoded_strings -a <YOUR-API-KEY>
+```
 
-The plugin project was generated without specifying the `--platforms` flag, no platforms are currently supported.
-To add platforms, run `flutter create -t plugin --platforms <platforms> .` in this directory.
-You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
+and all the keys you have in your workspace will be downloaded in the file `ditto_keys.json` which will be read from the linter.

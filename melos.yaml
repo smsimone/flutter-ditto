@@ -1,0 +1,9 @@
+name: flutter_ditto
+repository: https://github.com/smsimone/flutter-ditto.git
+packages:
+  - projects/*
+ignore:
+  - .
+scripts:
+  get: melos exec -- flutter pub get
+  update: melos exec -- flutter pub upgrade
