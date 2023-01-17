@@ -10,22 +10,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  freezed_annotation: ^2.0.3
-  http: ^0.13.4
-  json_annotation: ^4.5.0
+  flutter_cache_manager: ^3.3.0
   flutter_localizations:
     sdk: flutter
-  flutter_cache_manager: ^3.3.0
+  freezed_annotation: ^2.0.3
+  hardcoded_strings:
+    path: ../hardcoded_strings
+  http: ^0.13.4
+  json_annotation: ^4.5.0
   path_provider: ^2.0.11
 
 dev_dependencies:
   build_runner: ^2.1.11
+  custom_lint: ^0.1.2-dev
+  dotenv: ^4.0.1
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
   freezed: ^2.0.3+1
   json_serializable: ^6.2.0
-  dotenv: ^4.0.1
-  custom_lint: ^0.1.2-dev
-  hardcoded_strings:
-    path: linter/hardcoded_strings

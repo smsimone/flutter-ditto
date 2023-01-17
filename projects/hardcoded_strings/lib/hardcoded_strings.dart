@@ -6,6 +6,10 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 import 'package:hardcoded_strings/block_visitor.dart';
 import 'package:hardcoded_strings/element_visitor.dart';
 
+export 'model/component_key.dart';
+
+const cacheKeysFilename = 'ditto_cache_keys';
+
 PluginBase createPlugin() => _HardcodedStringsLinter();
 
 class _HardcodedStringsLinter extends PluginBase {
