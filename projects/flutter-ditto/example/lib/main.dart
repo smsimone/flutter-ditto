@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             TextField(
               decoration: InputDecoration(
-                hintText: 'hint_email'.translate(context),
+                hintText: 'hint_email_porcoddio'.translate(context),
               ),
               onChanged: (value) => _emailNotifier.value = value,
             ),
@@ -81,8 +81,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Text(
-                    'text_inserted_email'
-                        .translate(context, variables: {'email': snap ?? '-'}),
+                    'text_inserted_email'.translate(
+                      context,
+                      variables: {'email': snap ?? '-'},
+                    ),
                   ),
                 ),
               ),

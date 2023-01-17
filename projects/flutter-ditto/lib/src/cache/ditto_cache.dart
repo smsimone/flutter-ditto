@@ -28,6 +28,7 @@ class DittoCache {
     }
 
     _keysCacheFile = File('${dir.path}/$cacheKeysFilename');
+    cacheKeysFilePath = _keysCacheFile.path;
     if (!_keysCacheFile.existsSync()) {
       log('Created keys cache file', name: 'flutter_ditto');
       _keysCacheFile.createSync();
