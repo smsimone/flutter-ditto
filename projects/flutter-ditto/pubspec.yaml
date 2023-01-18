@@ -14,7 +14,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   freezed_annotation: ^2.0.3
-  hardcoded_strings: ^0.0.1
+  hardcoded_strings: # ^0.0.1
+    path: ../hardcoded_strings
   http: ^0.13.4
   json_annotation: ^4.5.0
   path_provider: ^2.0.11

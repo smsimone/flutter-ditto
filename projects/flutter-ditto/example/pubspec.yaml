@@ -20,7 +20,8 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
   custom_lint: ^0.1.2-dev
-  hardcoded_strings: ^0.0.1
+  hardcoded_strings:
+    path: ../../hardcoded_strings
 
 flutter:
   uses-material-design: true
