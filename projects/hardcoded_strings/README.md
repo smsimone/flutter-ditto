@@ -2,6 +2,24 @@
 
 This is a linter built with [custom_lint](https://pub.dev/packages/custom_lint) which will find all the hardcoded strings inside your widget and the keys which are not contained inside [Ditto](https://dittowords.com).
 
+## Installation
+
+To install this linter you have to add it in your `pubspec.yaml` as follows:
+
+```yaml
+dev_dependencies:
+  custom_lint:
+  hardcoded_strings:
+```
+
+and then, in your `analysis_options.yaml`:
+
+```yaml
+linter:
+  plugins:
+    - custom_lint
+```
+
 ## First run
 
 To get the linter run you firstly have to download your localizations with

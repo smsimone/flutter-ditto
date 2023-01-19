@@ -1,6 +1,6 @@
 name: hardcoded_strings
 description: Linter which notifies if the user is using hardcoded strings or invalid Ditto keys
-version: 0.0.1
+version: 0.0.2+1
 homepage: https://github.com/smsimone/flutter-ditto.git
 
 environment:

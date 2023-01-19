@@ -53,6 +53,7 @@ class _HardcodedStringsLinter extends CustomPluginBase {
     );
 
     final hardcoded = <Expression>[];
+    final translations = <Expression>[];
 
     elements
         .map((e) => e.childEntities)
@@ -60,45 +61,48 @@ class _HardcodedStringsLinter extends CustomPluginBase {
         .whereType<BlockFunctionBody>()
         .forEach(
           (e) => e.visitChildren(
-            HardcodedStringsVisitor(onHardcodedStringFound: hardcoded.add),
+            HardcodedStringsVisitor(
+              onHardcodedStringFound: hardcoded.add,
+              onDittoTranslationFound: translations.add,
+            ),
           ),
         );
 
-    log('Found ${hardcoded.length} hardcoded strings', name: 'flutter_ditto');
-    log(
-      'Strings: ${jsonEncode(hardcoded.map((t) => t.toString()).toList())}',
-      name: 'flutter_ditto',
-    );
-
     final config = await configs;
 
-    for (var element in hardcoded) {
-      if (element is SimpleStringLiteral) {
-        if (element.value.length < config.minLength) continue;
+    final lints = hardcoded
+        .whereType<SimpleStringLiteral>()
+        .where((t) => t.value.length >= config.minLength)
+        .map((element) => Lint(
+              code: 'hardcoded_string',
+              message: 'Do not use hardcoded Strings in your widgets',
+              location: unit.lintLocationFromOffset(
+                element.offset,
+                length: element.length,
+              ),
+              severity: config.lintLevels.hardcodedString.getLevel(),
+            ))
+        .toList();
 
-        if (!_availableKeys.contains(element.stringValue)) {
-          yield Lint(
-            code: 'invalid_ditto_keyword',
-            message:
-                'Keyword "${element.stringValue}" is not contained in Ditto',
-            location: unit.lintLocationFromOffset(
-              element.offset,
-              length: element.length,
-            ),
-            severity: config.lintLevels.invalidDittoKeyword.getLevel(),
-          );
-        } else {
-          yield Lint(
-            code: 'hardcoded_string',
-            message: 'Do not use hardcoded Strings in your widgets',
-            location: unit.lintLocationFromOffset(
-              element.offset,
-              length: element.length,
-            ),
-            severity: config.lintLevels.hardcodedString.getLevel(),
-          );
-        }
-      }
+    lints.addAll(
+      translations
+          .whereType<SimpleStringLiteral>()
+          .where((t) => !_availableKeys.contains(t.value))
+          .map((element) => Lint(
+                code: 'invalid_ditto_keyword',
+                message:
+                    'Keyword "${element.stringValue}" is not contained in Ditto',
+                location: unit.lintLocationFromOffset(
+                  element.offset,
+                  length: element.length,
+                ),
+                severity: config.lintLevels.invalidDittoKeyword.getLevel(),
+              ))
+          .toList(),
+    );
+
+    for (var element in lints) {
+      yield element;
     }
   }
 }
