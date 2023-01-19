@@ -3,3 +3,9 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   plugins:
     - custom_lint
+
+hardcoded_strings:
+  min_lint_length: 5
+  lint_levels:
+    hardcoded_strings: info
+    invalid_ditto_keyword: error

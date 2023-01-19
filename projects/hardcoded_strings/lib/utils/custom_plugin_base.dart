@@ -4,8 +4,8 @@ import 'dart:io';
 
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hardcoded_strings/utils/config.dart';
+import 'package:hardcoded_strings/utils/extensions.dart';
 import 'package:path/path.dart' as p;
 import 'package:yaml/yaml.dart';
 
@@ -21,7 +21,10 @@ class CustomPluginBase extends PluginBase {
   /// Returns a [Future] that completes when the project directory is found.
   ///
   /// This returns when the first [PluginBase.getLints()] callback is executed
-  Future<Uri> get projectDir => _projectDirCompleter.future;
+  Future<Uri> get projectDir {
+    print('Waiting for project directory');
+    return _projectDirCompleter.future;
+  }
 
   /// Returns a [Future] that completes when the configs are loaded from
   /// the `analysis_options.yaml` file
@@ -69,12 +72,20 @@ class CustomPluginBase extends PluginBase {
 
     final content = file.readAsStringSync();
     final yamlFile = loadYaml(content);
-    print('Yaml content is: $yamlFile');
+
+    final configs = yamlFile['hardcoded_strings'];
+    if (configs is YamlMap) {
+      _configsCompleter.complete(
+        _configs = Config.fromJson(configs.toMap()),
+      );
+    } else {
+      log('Using default configs', name: 'hardcoded_strings');
+      _configsCompleter.complete(_configs = const Config());
+    }
+    print('Linter configs are: ${_configs.toJson()}');
   }
 
-  @override
-  @mustCallSuper
-  Stream<Lint> getLints(ResolvedUnitResult resolvedUnitResult) async* {
+  void getProjectDir(ResolvedUnitResult resolvedUnitResult) {
     print('Looking for project dir 1');
     if (!_projectDirCompleter.isCompleted) {
       print('Looking for project directory');

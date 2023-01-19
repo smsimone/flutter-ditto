@@ -14,10 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Config _$ConfigFromJson(Map<String, dynamic> json) {
+  return _Config.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Config {
+  @JsonKey(name: 'min_lint_length')
   int get minLength => throw _privateConstructorUsedError;
+  @JsonKey(name: 'lint_levels')
+  LintLevels get lintLevels => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
@@ -27,7 +35,11 @@ abstract class $ConfigCopyWith<$Res> {
   factory $ConfigCopyWith(Config value, $Res Function(Config) then) =
       _$ConfigCopyWithImpl<$Res, Config>;
   @useResult
-  $Res call({int minLength});
+  $Res call(
+      {@JsonKey(name: 'min_lint_length') int minLength,
+      @JsonKey(name: 'lint_levels') LintLevels lintLevels});
+
+  $LintLevelsCopyWith<$Res> get lintLevels;
 }
 
 /// @nodoc
@@ -44,13 +56,26 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   @override
   $Res call({
     Object? minLength = null,
+    Object? lintLevels = null,
   }) {
     return _then(_value.copyWith(
       minLength: null == minLength
           ? _value.minLength
           : minLength // ignore: cast_nullable_to_non_nullable
               as int,
+      lintLevels: null == lintLevels
+          ? _value.lintLevels
+          : lintLevels // ignore: cast_nullable_to_non_nullable
+              as LintLevels,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LintLevelsCopyWith<$Res> get lintLevels {
+    return $LintLevelsCopyWith<$Res>(_value.lintLevels, (value) {
+      return _then(_value.copyWith(lintLevels: value) as $Val);
+    });
   }
 }
 
@@ -60,7 +85,12 @@ abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       __$$_ConfigCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int minLength});
+  $Res call(
+      {@JsonKey(name: 'min_lint_length') int minLength,
+      @JsonKey(name: 'lint_levels') LintLevels lintLevels});
+
+  @override
+  $LintLevelsCopyWith<$Res> get lintLevels;
 }
 
 /// @nodoc
@@ -74,28 +104,41 @@ class __$$_ConfigCopyWithImpl<$Res>
   @override
   $Res call({
     Object? minLength = null,
+    Object? lintLevels = null,
   }) {
     return _then(_$_Config(
       minLength: null == minLength
           ? _value.minLength
           : minLength // ignore: cast_nullable_to_non_nullable
               as int,
+      lintLevels: null == lintLevels
+          ? _value.lintLevels
+          : lintLevels // ignore: cast_nullable_to_non_nullable
+              as LintLevels,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Config implements _Config {
-  const _$_Config({this.minLength = 0});
+  const _$_Config(
+      {@JsonKey(name: 'min_lint_length') this.minLength = 0,
+      @JsonKey(name: 'lint_levels') this.lintLevels = const LintLevels()});
+
+  factory _$_Config.fromJson(Map<String, dynamic> json) =>
+      _$$_ConfigFromJson(json);
 
   @override
-  @JsonKey()
+  @JsonKey(name: 'min_lint_length')
   final int minLength;
+  @override
+  @JsonKey(name: 'lint_levels')
+  final LintLevels lintLevels;
 
   @override
   String toString() {
-    return 'Config(minLength: $minLength)';
+    return 'Config(minLength: $minLength, lintLevels: $lintLevels)';
   }
 
   @override
@@ -104,24 +147,42 @@ class _$_Config implements _Config {
         (other.runtimeType == runtimeType &&
             other is _$_Config &&
             (identical(other.minLength, minLength) ||
-                other.minLength == minLength));
+                other.minLength == minLength) &&
+            (identical(other.lintLevels, lintLevels) ||
+                other.lintLevels == lintLevels));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, minLength);
+  int get hashCode => Object.hash(runtimeType, minLength, lintLevels);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_ConfigCopyWith<_$_Config> get copyWith =>
       __$$_ConfigCopyWithImpl<_$_Config>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ConfigToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Config implements Config {
-  const factory _Config({final int minLength}) = _$_Config;
+  const factory _Config(
+      {@JsonKey(name: 'min_lint_length') final int minLength,
+      @JsonKey(name: 'lint_levels') final LintLevels lintLevels}) = _$_Config;
+
+  factory _Config.fromJson(Map<String, dynamic> json) = _$_Config.fromJson;
 
   @override
+  @JsonKey(name: 'min_lint_length')
   int get minLength;
+  @override
+  @JsonKey(name: 'lint_levels')
+  LintLevels get lintLevels;
   @override
   @JsonKey(ignore: true)
   _$$_ConfigCopyWith<_$_Config> get copyWith =>
